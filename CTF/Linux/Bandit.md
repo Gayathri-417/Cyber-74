@@ -291,6 +291,11 @@ FO5dwFsc0cbaIiH0h8J2eUks2vdTDwAn
 
 ```
 
+## Level 13-14
+
+> commands
+
+ssh  bandit14@bandit.labs.overthewire.org -p 2220
 
 
 
