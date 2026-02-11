@@ -366,7 +366,25 @@ ssh  bandit18@bandit.labs.overthewire.org -p 2220
 x2gLTTjFwMOhQ8oWNbMN362QKxfRqGlO
 ```
 
+## Level 18-19
 
+> commands
+
+ssh bandit18@bandit.labs.overthewire.org -p 2220 cat readme //- This will connect, run cat readme, and print the contents (the password) before disconnecting.
+//
+ssh  bandit19@bandit.labs.overthewire.org -p 2220
+
+> password
+
+```bash
+cGWpMaKXVwDUNgPAVJbWYuGHVn9zl3j8
+```
+
+## Level 19-20
+
+> commands
+
+ssh  bandit20@bandit.labs.overthewire.org -p 2220
 
 
 
