@@ -296,6 +296,59 @@ FO5dwFsc0cbaIiH0h8J2eUks2vdTDwAn
 > commands
 
 ssh  bandit14@bandit.labs.overthewire.org -p 2220
+exit // log out first
+ssh -i sshkey.private bandit14@bandit.labs.overthewire.org -p 2220
+cat /etc/bandit_pass/bandit14 
+
+> password
+
+```bash
+MU4VWeTyJk8ROof1qqmcBPaLh7lDCPvS
+```
+
+## Level 14-15
+
+> commands
+
+ssh  bandit15@bandit.labs.overthewire.org -p 2220
+nc localhost 30000
+//nc → netcat tool (connect to ports)
+localhost → your own machine
+30000 → port number//
+It will just wait.
+ Now paste the bandit14 password
+ Press Enter
+
+> password
+
+```bash
+8xCjnmgoKbGLhHFAZlGE5Tmu4M2tKJQo
+```
+
+## Level 15-16
+
+> commands
+
+ssh  bandit16@bandit.labs.overthewire.org -p 2220
+openssl s_client -connect localhost:30001
+
+openssl → cryptography tool
+s_client → SSL client mode
+-connect → connect to server
+
+> password
+
+```bash
+kSkvUpMQ7lBYyCM4GBPvCvT1BfWRy0Dx
+```
+
+## Level 16-17
+
+> commands
+
+ssh  bandit17@bandit.labs.overthewire.org -p 2220
+
+
 
 
 
