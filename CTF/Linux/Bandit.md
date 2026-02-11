@@ -348,6 +348,24 @@ kSkvUpMQ7lBYyCM4GBPvCvT1BfWRy0Dx
 
 ssh  bandit17@bandit.labs.overthewire.org -p 2220
 
+> password
+
+```bash
+BMIOFKM7CRSLI97voLp3TD80NAq5exxk
+```
+
+## Level 17-18
+
+> commands
+
+ssh  bandit18@bandit.labs.overthewire.org -p 2220
+
+> password
+
+```bash
+x2gLTTjFwMOhQ8oWNbMN362QKxfRqGlO
+```
+
 
 
 
