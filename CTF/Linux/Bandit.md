@@ -506,3 +506,125 @@ file bandit27-do
 ```bash
 upsNCc7vzaRDx6oZC6GiR6ERwe1MowGB
 ```
+
+## Level 27-28
+
+> commands
+
+ssh  bandit28@bandit.labs.overthewire.org -p 2220
+mkdir /tmp/bandit27repo
+cd /tmp/bandit27repo
+GIT_SSH_COMMAND='ssh -i sshkey.private -p 2220' git clone ssh://bandit27-git@bandit.labs.overthewire.org/home/bandit27-git/repo
+cd repo
+ls -la
+cat README
+> password
+
+```bash
+Yz9IpL0sBcCeuG7m9uQFt8ZNpS4HZRcN
+```
+
+## Level 28-29
+
+> commands
+
+ssh  bandit29@bandit.labs.overthewire.org -p 2220
+mkdir /tmp/bandit28repo
+cd /tmp/bandit28repo
+GIT_SSH_COMMAND='ssh -p 2220' git clone ssh://bandit28-git@bandit.labs.overthewire.org/home/bandit28-git/repo
+cd repo
+ls -la
+cat README
+git log
+git show <commit-hash>
+git log -p
+
+> password
+
+```bash
+4pT1t5DENaYuqnqvadYs1oE4QLCdjmJ7
+```
+
+## Level 29-30
+
+> commands
+
+ssh  bandit30@bandit.labs.overthewire.org -p 2220
+mkdir /tmp/bandit29repo
+cd /tmp/bandit29repo
+GIT_SSH_COMMAND='ssh -p 2220' git clone ssh://bandit29-git@bandit.labs.overthewire.org/home/bandit29-git/repo
+cd repo
+ls -la
+cat README.md
+git branch -a
+git checkout dev
+cat README.md
+
+> password
+
+```bash
+qp30ex3VLz5MDG1n91YowTv4Q8l7CDZL
+```
+
+## Level 30-31
+
+> commands
+
+ssh  bandit31@bandit.labs.overthewire.org -p 2220
+mkdir /tmp/bandit30repo
+cd /tmp/bandit30repo
+GIT_SSH_COMMAND='ssh -p 2220' git clone ssh://bandit30-git@bandit.labs.overthewire.org/home/bandit30-git/repo
+cd repo
+ls -la
+cat README.md
+git tag
+git show secret //secret --tag name--//
+
+> password
+
+```bash
+fb5S2xb7bRyFmAvQYQGEqsbhVyJqhnDy
+```
+
+## Level 31-32
+
+> commands
+
+ssh  bandit32@bandit.labs.overthewire.org -p 2220
+mkdir /tmp/bandit31repo
+cd /tmp/bandit31repo
+GIT_SSH_COMMAND='ssh -p 2220' git clone ssh://bandit31-git@bandit.labs.overthewire.org/home/bandit31-git/repo
+cd repo
+echo "May I come in?" > key.txt
+git add -f key.txt
+git config user.email "bandit31@example.com"
+git config user.name "Bandit Player"
+git commit -m "Add key.txt with required content"
+GIT_SSH_COMMAND='ssh -p 2220' git push origin master
+
+
+> password
+
+```bash
+3O9RfhqyAlVBEZpVb6LYStshZoqoSx5K
+```
+
+## Level 32-33
+
+> commands
+
+ssh  bandit33@bandit.labs.overthewire.org -p 2220
+WELCOME TO THE UPPERCASE SHELL
+>>(To exit from this shell use  $0)
+cat /etc/bandit_pass/bandit33
+Again login as bandit33
+
+> password
+
+```bash
+tQdtbs5D5i2vJwkO8mEyYEyTL8izoeJ0
+```
+
+## Level 33 - 34
+
+Congratulations cmpltd
