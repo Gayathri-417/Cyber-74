@@ -478,3 +478,31 @@ done | nc localhost 30002
 ```bash
 iCi86ttT4KSNe1armKiwbQNmB3YJP3q4
 ```
+
+## Level 25-26
+
+> commands
+
+ssh  bandit26@bandit.labs.overthewire.org -p 2220
+
+> password
+
+```bash
+s0773xxkk0MXfdqOfPRVr9L3jJBUOgCZ
+```
+
+## Level 26-27
+
+> commands
+
+ssh  bandit27@bandit.labs.overthewire.org -p 2220
+ls
+text.txt
+file bandit27-do
+./bandit27-do whoami
+./bandit27-do cat /etc/bandit_pass/bandit27
+> password
+
+```bash
+upsNCc7vzaRDx6oZC6GiR6ERwe1MowGB
+```
