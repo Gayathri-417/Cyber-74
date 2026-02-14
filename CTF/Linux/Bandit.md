@@ -347,6 +347,12 @@ kSkvUpMQ7lBYyCM4GBPvCvT1BfWRy0Dx
 > commands
 
 ssh  bandit17@bandit.labs.overthewire.org -p 2220
+nmap -p 31000-32000 localhost
+openssl s_client -connect localhost:PORT
+<bandit16_password>
+nano key17
+chmod 600 key17
+ssh -i key17 bandit17@bandit.labs.overthewire.org -p 2220
 
 > password
 
@@ -359,6 +365,10 @@ BMIOFKM7CRSLI97voLp3TD80NAq5exxk
 > commands
 
 ssh  bandit18@bandit.labs.overthewire.org -p 2220
+ls
+diff passwords.old passwords.new
+
+
 
 > password
 
