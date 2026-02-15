@@ -361,6 +361,44 @@ BMIOFKM7CRSLI97voLp3TD80NAq5exxk
 ```
 
 ## Level 17-18
+QUESTION
+> Two files exist in the directory. Only one contains the correct password. The difference between them reveals the solution.
+> 
+> **How would you:**
+> * Compare the two files?
+> * Extract only the differing content?
+> * Automate comparison if files are large?
+> 
+> **Solution Approach:**
+> ```
+> # Step 1: Establish SSH connection to target system
+> ssh bandit18@bandit.labs.overthewire.org -p 2220
+> 
+> # Step 2: List files in current directory
+> ls
+> # Identifies the two files: passwords.old and passwords.new
+> 
+> # Step 3: Compare files using diff command
+> diff passwords.old passwords.new
+> # Shows lines that differ between the two files
+> # Output format: < indicates lines in first file, > indicates lines in second file
+> 
+> # Step 4: Alternative comparison methods
+> # View only unique lines from second file
+> comm -23 <(sort passwords.new) <(sort passwords.old)
+> 
+> # Use grep to find lines in new file not in old file
+> grep -v -f passwords.old passwords.new
+> 
+> # For binary files or checksum comparison
+> md5sum passwords.old passwords.new
+> sha256sum passwords.old passwords.new
+> 
+> # Step 5: Extract the differing content (the new password)
+> # The line marked with '>' in diff output is the password
+> diff passwords.old passwords.new | grep '>' | cut -d ' ' -f2-
+> ```
+
 
 > commands
 
