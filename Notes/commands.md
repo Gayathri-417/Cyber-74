@@ -290,12 +290,9 @@ Information:
 ├── Ctrl + C              # Show cursor position
 ├── Ctrl + T              # Check spelling
 
-Complete Nano editing session example:
-
- nano mynotes.txt
 
  Step 3: Save and exit
- 
+
 Press Ctrl + O (to save)
 
 Press Enter (confirm filename)
