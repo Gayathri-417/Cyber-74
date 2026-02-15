@@ -326,6 +326,40 @@ It will just wait.
 ```
 
 ## Level 15-16
+QUESTION
+
+> A service requires SSL/TLS connection on a specific port to receive and validate a password.
+> 
+> **How would you:**
+> * Establish a secure connection?
+> * Validate certificate handshake?
+> * Send correct authentication data?
+> 
+> **Solution Approach:**
+> ```
+> # Step 1: Establish SSH connection to target system
+> ssh bandit16@bandit.labs.overthewire.org -p 2220
+> 
+> # Step 2: Establish SSL/TLS connection to the service
+> # openssl → cryptography tool
+> # s_client → SSL client mode
+> # -connect → connect to server
+> openssl s_client -connect localhost:30001
+> 
+> # Step 3: Validate certificate handshake
+> # During connection, observe:
+> # - SSL handshake completion messages
+> # - Certificate chain verification
+> # - Session negotiation details
+> 
+> # Step 4: Send authentication data
+> # After connection is established, enter:
+> <bandit15_password>
+> # Press Enter to submit
+> 
+> # Step 5: Receive response
+> # Service will validate password and return next level credentials
+
 
 > commands
 
@@ -343,6 +377,46 @@ kSkvUpMQ7lBYyCM4GBPvCvT1BfWRy0Dx
 ```
 
 ## Level 16-17
+QUESTION
+> Multiple network services are running on different ports. Only one responds with the correct SSL-encrypted service.
+> 
+> **How would you:**
+> * Scan open ports?
+> * Identify SSL-enabled services?
+> * Interact securely with the correct port?
+> 
+> **Solution Approach:**
+> ```
+> # Step 1: Establish SSH connection to target system
+> ssh bandit17@bandit.labs.overthewire.org -p 2220
+> 
+> # Step 2: Scan for open ports in the specified range
+> nmap -p 31000-32000 localhost
+> # Identifies which ports are listening for connections
+> 
+> # Step 3: Identify SSL-enabled services among open ports
+> # For each open port, attempt SSL connection
+> # Look for SSL handshake completion and service banners
+> 
+> # Step 4: Connect to the correct SSL-enabled port
+> openssl s_client -connect localhost:PORT
+> # Replace PORT with the discovered port running SSL service
+> 
+> # Step 5: Submit the current level password
+> <bandit16_password>
+> # After connection, enter the password to receive next level credentials
+> 
+> # Step 6: Save the received SSH private key
+> nano key17
+> # Paste the RSA private key received from the SSL service
+> 
+> # Step 7: Set proper permissions for SSH key
+> chmod 600 key17
+> # SSH requires private keys to have strict permissions
+> 
+> # Step 8: Use the key to access next level
+> ssh -i key17 bandit17@bandit.labs.overthewire.org -p 2220
+> # Successfully logs into bandit17 using the private key
 
 > commands
 
