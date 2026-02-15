@@ -1743,6 +1743,46 @@ GIT_SSH_COMMAND='ssh -p 2220' git push origin master
 ```
 
 ## Level 32-33
+QUESTION
+
+> You log into a server, but the shell behaves unusually:
+> * Commands are converted to uppercase automatically
+> * Standard commands fail
+> * The shell appears restricted
+> 
+> **How would you:**
+> * Identify the nature of the restricted shell?
+> * Test how input is processed?
+> * Bypass command transformation?
+> * Gain access to a functional shell environment?
+> 
+> **Solution Approach:**
+> ```
+> # Step 1: Establish SSH connection
+> ssh bandit33@bandit.labs.overthewire.org -p 2220
+> 
+> # Step 2: Observe the restricted shell behavior
+> # WELCOME TO THE UPPERCASE SHELL
+> # >> (To exit from this shell use  $0)
+> 
+> # Step 3: Test command transformation
+> >> ls
+> # Output: sh: 1: LS: not found (command converted to uppercase)
+> 
+> # Step 4: Try different inputs to understand the shell
+> >> echo test
+> # Output: sh: 1: ECHO: not found
+> 
+> >> $0
+> # This launches a new shell (as hinted in welcome message)
+> 
+> # Step 5: Now in normal shell, retrieve the password
+> $ cat /etc/bandit_pass/bandit33
+> # Password displayed
+> 
+> # Step 6: Exit back to uppercase shell, then logout
+> $ exit
+> >> exit
 
 > commands
 
