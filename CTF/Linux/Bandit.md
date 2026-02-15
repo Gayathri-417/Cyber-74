@@ -149,6 +149,32 @@ data.txt → file to search in
 millionth       dfwvzFQi4mU0wfNbFOe9RoWskMLg7eEc
 ```
 ## Level 8-9
+QUESTION 
+
+> A file contains many repeated lines, but the password appears only once.
+> 
+> **How would you:**
+> * Identify unique lines?
+> * Sort and filter efficiently?
+> * Handle large files?
+> 
+> **Solution Approach:**
+> ```
+> # Step 1: Establish SSH connection
+> ssh bandit9@bandit.labs.overthewire.org -p 2220
+> 
+> # Step 2: Sort the file to group identical lines together
+> sort data.txt
+> # sort → groups same lines together
+> 
+> # Step 3: Find the line that appears only once
+> sort data.txt | uniq -u
+> # | → passes output from one command to another
+> # uniq -u → shows only lines that appear once
+> 
+> # Step 4: Save the unique line (password)
+> sort data.txt | uniq -u > password.txt
+> cat password.txt
 
 > commands
 
