@@ -38,6 +38,28 @@ cat - read a file
 ```
 
 ## Level 2-3
+QUESTION
+
+> The password is stored in a file with spaces in its name.
+> 
+> **How would you:**
+> * Properly reference the filename?
+> * Handle special characters?
+> * Avoid shell parsing errors?
+> 
+> **Solution Approach:**
+> ```
+> # Step 1: Establish SSH connection
+> ssh bandit3@bandit.labs.overthewire.org -p 2220
+> 
+> # Step 2: List files to see the problematic filename
+> ls
+> # Output shows: 'spaces in this filename'
+> 
+> # Step 3: Read the file using quotes to handle spaces
+> cat "./--spaces in this filename--"
+> # Quotes preserve the spaces as part of the filename
+> # ./ ensures we reference the file in current directory
 
 > commands
 ssh  bandit3@bandit.labs.overthewire.org -p 2220
