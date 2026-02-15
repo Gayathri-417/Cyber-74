@@ -198,4 +198,109 @@ Select all files including hidden ones (.*)
 Count all files
   ls * | wc -l      # Number of files
 
+## 14) FINDING A REQUIRED FILE OR DIRECTORY
+
+Method 1: find command (most powerful)
+
+ Find by name
+   find . -name "filename.txt"                    # Find in current directory
+
+   find /home -name "file1.txt"                    # Find in /home
+
+   find / -name "prjct" 2>/dev/null                # Search entire system (ignore errors)
+
+ Find by type
+   find . -type f -name "*.txt"                    # Find all text files
+
+   find . -type d -name "prjct"                    # Find directories named prjct
+
+ Find by size
+   find . -size +10M                               # Files larger than 10MB
+
+   find . -size -1k                                # Files smaller than 1KB
+
+ Find by modification time
+   find . -mtime -1                                # Modified in last 24 hours
+
+   find . -mtime +7                                # Modified more than 7 days ago
+
+Method 2: locate command (faster, needs database)
+
+ sudo updatedb                                   # Update database first
+
+ locate filename.txt                             # Find file quickly
+
+ locate prjct                                    # Find everything with 'prjct'
+
+ Method 3: grep command (search inside files)
+
+  grep "hello" *                                  # Search for "hello" in all files
+
+  grep -r "password" /home/hacker/                 # Search recursively
+
+  grep -i "error" *.log                           # Case-insensitive search
+
+Method 4: which command (find executable location)
+
+  which ls                                         # Shows: /usr/bin/ls
+
+   which python3                                    # Find Python location
+
+## 15) EDITING USING NANO TOOL  
+
+ Opening files with Nano
+   
+   nano filename.txt                                # Open file for editing
+
+   nano -l file.txt                                 # Open with line numbers
+
+   sudo nano /etc/hosts                             # Edit system file (as root)
+
+ Inside Nano Editor - KEYBOARD SHORTCUTS:
+
+   Navigation:
+├── Arrow keys            # Move cursor
+├── Ctrl + A              # Go to beginning of line
+├── Ctrl + E              # Go to end of line
+├── Ctrl + Y              # Page up
+├── Ctrl + V              # Page down
+├── Ctrl + _              # Go to specific line number
+
+Editing:
+├── Just start typing     # Insert text
+├── Ctrl + K              # Cut current line
+├── Ctrl + U              # Paste cut text
+├── Ctrl + 6              # Start marking text (then use arrows)
+├── Ctrl + K (with marked) # Cut marked text
+├── Ctrl + U              # Uncut/Paste
+
+Search and Replace:
+├── Ctrl + W              # Search for text
+├── Ctrl + \              # Search and replace
+├── Alt + W               # Find next
+
+File Operations:
+├── Ctrl + O              # Save file (WriteOut)
+├── Ctrl + X              # Exit nano
+├── Ctrl + R              # Insert another file
+├── Ctrl + S              # Save without exiting
+
+Information:
+├── Ctrl + G              # Get help (all commands)
+├── Ctrl + C              # Show cursor position
+├── Ctrl + T              # Check spelling
+
+Complete Nano editing session example:
+
+ nano mynotes.txt
+
+ Step 3: Save and exit
+ 
+Press Ctrl + O (to save)
+
+Press Enter (confirm filename)
+
+Press Ctrl + X (to exit)
+
+
 
