@@ -232,6 +232,72 @@ tr 'A-Za-z' 'N-ZA-Mn-za-m' // Translates letters using ROT13:
 7x16WNeHIi5YkIhWsfFIqoognUTyj9Q4
 ```
 ## Level 12-13
+QUESTION
+
+> You are given a file that has been compressed multiple times using different formats.
+> 
+> **How would you:**
+> * Identify file type?
+> * Decompress layer by layer?
+> * Automate extraction if needed?
+> 
+> **Solution Approach:**
+> ```
+> # Step 1: Establish SSH connection
+> ssh bandit13@bandit.labs.overthewire.org -p 2220
+> 
+> # Step 2: Create a temporary working directory for safe extraction
+> WORKDIR=$(mktemp -d)        # Creates a temporary working directory
+> cd $WORKDIR                 # Moves into the temp directory
+> 
+> # Step 3: Copy the hexdump file to work safely
+> cp ~/data.txt .             # Copies given hexdump file to safe location
+> 
+> # Step 4: Reverse the hexdump back to original binary
+> xxd -r data.txt > file      # Reverses hexdump to binary
+> 
+> # Step 5: Identify file type and decompress layer by layer
+> 
+> # Layer 1: Identify and decompress gzip
+> file file                    # Checks file type (gzip)
+> mv file file.gz              # Renames to .gz for gunzip
+> gunzip file.gz               # Decompresses gzip file
+> 
+> # Layer 2: Identify and decompress bzip2
+> file file                    # Checks type (bzip2)
+> mv file file.bz2             # Renames to .bz2
+> bunzip2 file.bz2             # Decompresses bzip2
+> 
+> # Layer 3: Identify and extract tar archive
+> file file                    # Checks type (tar)
+> mv file file.tar             # Renames to .tar
+> tar -xf file.tar             # Extracts tar archive
+> 
+> # Layer 4: Extract tar from data5.bin
+> file data5.bin               # Checks type (tar)
+> mv data5.bin data5.tar       # Renames to tar
+> tar -xf data5.tar            # Extracts tar archive
+> 
+> # Layer 5: Decompress bzip2 from data6.bin
+> file data6.bin               # Checks type (bzip2)
+> mv data6.bin data6.bz2       # Renames to bzip2
+> bunzip2 data6.bz2            # Decompresses bzip2
+> 
+> # Layer 6: Extract tar from data6
+> file data6                   # Checks type (tar)
+> mv data6 data6.tar           # Renames to tar
+> tar -xf data6.tar            # Extracts tar archive
+> 
+> # Layer 7: Decompress gzip from data8.bin
+> file data8.bin               # Checks type (gzip)
+> mv data8.bin data8.gz        # Renames to gzip
+> gunzip data8.gz              # Decompresses gzip
+> 
+> # Final Layer: Read the password
+> file data8                   # Confirms ASCII text
+> cat data8                    # Displays password for Bandit Level 13
+
+
 
 > commands
 
