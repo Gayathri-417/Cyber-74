@@ -25,6 +25,29 @@ ZjLjTmM6FvvyRnrb2rfNWOZOTa6ip5If
 ```
 
 ## Level 1-2    
+QUESTION
+
+> The password is stored in a file named "-" (hyphen).
+> 
+> **How would you:**
+> * Access a file with reserved name?
+> * Prevent command confusion?
+> * Use relative paths correctly?
+> 
+> **Solution Approach:**
+> ```
+> # Step 1: Establish SSH connection
+> ssh bandit2@bandit.labs.overthewire.org -p 2220
+> 
+> # Step 2: List files to see the problematic filename
+> ls                    # list all files
+> # Output shows: '-'
+> 
+> # Step 3: Attempt to read the file (this will fail)
+> cat -                 # This doesn't work because '-' means stdin
+> 
+> # Step 4: Correct way - use path to avoid interpretation
+> cat ./-
 
 > commands
 ssh  bandit2@bandit.labs.overthewire.org -p 2220
