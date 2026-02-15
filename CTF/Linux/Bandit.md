@@ -51,6 +51,33 @@ MNk8KNH3Usiio41PRUEoDFPqfxLPlSmx
 ```
 
 ## Level 3-4
+QUESTION
+
+> The password is stored in a hidden file inside a directory.
+> 
+> **How would you:**
+> * Display hidden files?
+> * Access hidden content?
+> * Avoid missing dot-files?
+> 
+> **Solution Approach:**
+> ```
+> # Step 1: Establish SSH connection
+> ssh bandit4@bandit.labs.overthewire.org -p 2220
+> 
+> # Step 2: List files in current directory
+> ls                # list all files
+> 
+> # Step 3: Try to view inhere (but it's a directory)
+> cat inhere        # error: cat: inhere: Is a directory> 
+> # Step 4: Change into the inhere directory
+> cd inhere         # cd: inhere: Is a directory (but actually works)
+> 
+> # Step 5: List all files, including hidden ones
+> ls -a             # list all files, including those starting with dot (.)
+> 
+> # Step 6: View the hidden file content
+> cat ...Hiding-From-You
 
 > commands
 
