@@ -1480,6 +1480,55 @@ Yz9IpL0sBcCeuG7m9uQFt8ZNpS4HZRcN
 ```
 
 ## Level 28-29
+QUESTION
+
+> You are given access to a remote Git repository. The current version of the project does not contain any visible credentials.
+> 
+> However, you suspect that sensitive information may have been committed earlier and later removed.
+> 
+> **How would you:**
+> * Inspect the repository history?
+> * Identify deleted secrets?
+> * Retrieve credentials from previous commits?
+> * Explain the security risk of exposed Git history?
+> 
+> **Solution Approach:**
+> ```
+> # Step 1: Establish SSH connection
+> ssh bandit29@bandit.labs.overthewire.org -p 2220
+> 
+> # Step 2: Create temporary directory for cloning
+> mkdir /tmp/bandit28repo
+> cd /tmp/bandit28repo
+> 
+> # Step 3: Clone the repository with SSH on custom port
+> GIT_SSH_COMMAND='ssh -p 2220' git clone ssh://bandit28-git@bandit.labs.overthewire.org/home/bandit28-git/repo
+> 
+> # Step 4: Navigate into the cloned repository
+> cd repo
+> 
+> # Step 5: List files to see current content
+> ls -la
+> 
+> # Step 6: Check current README (credentials likely removed)
+> cat README
+> 
+> # Step 7: Inspect commit history
+> git log
+> # Shows all commits with hashes, authors, dates, and messages
+> 
+> # Step 8: View detailed changes in each commit
+> git log -p
+> # Shows full diff for each commit, including removed lines
+> 
+> # Step 9: Examine specific commit that might contain credentials
+> git show <commit-hash>
+> # Replace <commit-hash> with the hash of the suspicious commit
+> 
+> # Step 10: Search through all commits for specific patterns
+> git log -p | grep -i "password\|credential\|secret"
+
+
 
 > commands
 
