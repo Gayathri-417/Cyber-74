@@ -12,6 +12,42 @@ bandit0
 ```
 
 ## Level 0-1
+QUESTION
+
+> You are given SSH credentials to a remote Linux server. After logging in, you see a file named readme in the user's home directory.
+> 
+> **Your task is to:**
+> * Identify your current location
+> * List available files
+> * Read the content of the file
+> * Extract the credential stored inside
+> 
+> **Explain your step-by-step approach.**
+> 
+> **Solution Approach:**
+> ```
+> # Step 1: Establish SSH connection to the target server
+> ssh bandit0@bandit.labs.overthewire.org -p 2220
+> # Password: bandit0
+> 
+> # Step 2: Identify current working directory
+> pwd
+> # Output: /home/bandit0 (home directory)
+> 
+> # Step 3: List files in current directory
+> ls
+> # Output: readme
+> 
+> # Step 4: Examine file details (optional but good practice)
+> ls -la readme
+> # Shows permissions, size, and confirms it's a regular file
+> 
+> # Step 5: Read the content of the file
+> cat readme
+> # Displays the password for the next level
+> 
+> # Step 6: Extract and save the credential
+> cat readme > bandit1_password.txt
 
 > commands
 ssh  bandit1@bandit.labs.overthewire.org -p 2220
