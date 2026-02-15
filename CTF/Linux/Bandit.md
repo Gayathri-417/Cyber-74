@@ -377,6 +377,32 @@ x2gLTTjFwMOhQ8oWNbMN362QKxfRqGlO
 ```
 
 ## Level 18-19
+QUESTION
+> You SSH into a system but it immediately logs you out after login.
+> 
+> **How would you:**
+> * Investigate why the session terminates?
+> * Check startup files?
+> * Bypass the forced logout mechanism?
+> 
+> **Solution Approach:**
+> ```
+> # Step 1: Attempt SSH connection with command execution to bypass shell
+> # Instead of getting an interactive shell, directly execute a command
+> ssh bandit18@bandit.labs.overthewire.org -p 2220 cat readme
+> # This connects, runs 'cat readme', and prints the password before disconnecting
+> 
+> # Step 2: Alternative - SSH with different command to investigate
+> ssh bandit18@bandit.labs.overthewire.org -p 2220 ls -la
+> # List files in home directory to locate readme or other files
+> 
+> # Step 3: Check for modified startup files (.bashrc, .profile, etc.)
+> ssh bandit18@bandit.labs.overthewire.org -p 2220 "cat .bashrc"
+> # Examine bashrc for logout commands or modified configurations
+> 
+> # Step 4: If you need the password for next level (bandit19)
+> ssh bandit19@bandit.labs.overthewire.org -p 2220
+> # Use retrieved password to access next level
 
 > commands
 
@@ -391,6 +417,38 @@ cGWpMaKXVwDUNgPAVJbWYuGHVn9zl3j8
 ```
 
 ## Level 19-20
+QUESTION
+
+> You find a binary file in the user's home directory that executes commands as another user.
+> 
+> **How would you:**
+> * Determine if it has elevated privileges?
+> * Test what it can execute?
+> * Abuse it to retrieve restricted data?
+> 
+> **Solution Approach:**
+> ```
+> # Step 1: Establish SSH connection to target system
+> ssh bandit20@bandit.labs.overthewire.org -p 2220
+> 
+> # Step 2: Examine file permissions to identify elevated privileges
+> ls -l
+> # Look for SUID bit (s in permissions) or special ownership
+> # Example output shows bandit20-do with special permissions
+> 
+> # Step 3: Analyze the binary's behavior without executing dangerous commands
+> ./bandit20-do
+> # Run without arguments to see help/usage information
+> # Reveals it executes commands as bandit21 user
+> 
+> # Step 4: Test basic command execution through the binary
+> ./bandit20-do whoami
+> # Confirms commands run as bandit21 (higher privilege user)
+> 
+> # Step 5: Abuse elevated privileges to retrieve restricted credentials
+> ./bandit20-do cat /etc/bandit_pass/bandit20
+> # Successfully accesses password file as bandit21
+
 
 > commands
 
@@ -407,6 +465,35 @@ ls -l
 ```
 
 ## Level 20-21
+QUESTION
+
+> A service is running locally and expects a password via TCP connection. You already know the password but must send it through a specific method.
+> 
+> **How would you:**
+> * Identify the listening service?
+> * Interact with it securely?
+> * Automate communication if needed?
+> 
+> **Solution Approach:**
+> ```
+> # Step 1: Establish SSH connection to target system
+> ssh bandit21@bandit.labs.overthewire.org -p 2220
+> 
+> # Step 2: Identify listening services/netcat connections
+> # Check for running processes or open ports
+> ps aux | grep -i nc
+> netstat -tulpn | grep LISTEN
+> 
+> # Step 3: Set up a listener to send the password
+> # Use netcat to listen on a specific port and send the known password
+> echo -n '0qXahG8ZjOVMN9Ghs7iOWsCfZyXOUbYO' | nc -l -p 1234 &
+> # The '&' runs this in background, listening on port 1234
+> 
+> # Step 4: Connect to the service that will receive the password
+> ./suconnect 1234
+> # This connects to port 1234 and retrieves the password from the listener
+> # The service validates the password and returns the next level credentials
+> ```
 
 > commands
 
