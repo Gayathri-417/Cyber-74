@@ -1529,7 +1529,6 @@ QUESTION
 > git log -p | grep -i "password\|credential\|secret"
 
 
-
 > commands
 
 ssh  bandit29@bandit.labs.overthewire.org -p 2220
@@ -1550,6 +1549,52 @@ git log -p
 ```
 
 ## Level 29-30
+QUESTION
+
+> You discover that the repository has multiple branches. The default branch does not contain the required information, but you suspect another branch might.
+> 
+> **How would you:**
+> * List all branches (local and remote)?
+> * Switch to hidden or non-default branches?
+> * Inspect branch-specific content?
+> * Identify credentials stored in alternative development branches?
+> 
+> **Solution Approach:**
+> ```
+> # Step 1: Establish SSH connection
+> ssh bandit30@bandit.labs.overthewire.org -p 2220
+> 
+> # Step 2: Create temporary directory for cloning
+> mkdir /tmp/bandit29repo
+> cd /tmp/bandit29repo
+> 
+> # Step 3: Clone the repository with SSH on custom port
+> GIT_SSH_COMMAND='ssh -p 2220' git clone ssh://bandit29-git@bandit.labs.overthewire.org/home/bandit29-git/repo
+> 
+> # Step 4: Navigate into the cloned repository
+> cd repo
+> 
+> # Step 5: Examine default branch (usually main/master)
+> ls -la
+> cat README.md
+> # Default branch doesn't contain the password
+> 
+> # Step 6: List all branches (local and remote)
+> git branch -a
+> # Shows: * master, remotes/origin/HEAD, remotes/origin/dev, remotes/origin/master, remotes/origin/sploits-dev
+> 
+> # Step 7: Switch to another branch (dev branch)
+> git checkout dev
+> # Switched to branch 'dev'
+> 
+> # Step 8: Inspect branch-specific content
+> cat README.md
+> # Now contains the password for next level
+> 
+> # Alternative: Check other branches if needed
+> git checkout sploits-dev
+> ls -la
+> cat README.md
 
 > commands
 
