@@ -101,6 +101,37 @@ HWasnPhtq9AVKe0dmk45nxy20cvUa6EG
 ```
 
 ## Level 6-7
+QUESTION
+
+> You are told the password is located somewhere on the server with specific file properties:
+> * Owned by a particular user
+> * Specific group
+> * Specific size
+> 
+> **How would you:**
+> * Search entire filesystem?
+> * Filter by ownership and size?
+> * Avoid permission errors?
+> 
+> **Solution Approach:**
+> ```
+> # Step 1: Establish SSH connection
+> ssh bandit7@bandit.labs.overthewire.org -p 2220
+> 
+> # Step 2: Navigate to root directory for full system search
+> cd /    # root directory
+> 
+> # Step 3: Search entire system with specific file properties
+> # / → search entire system
+> # -type f → files only
+> # -user bandit7 → owned by bandit7
+> # -group bandit6 → group bandit6
+> # -size 33c → exactly 33 bytes (c = bytes)
+> # 2>/dev/null → hide permission errors (VERY important)
+> find / -type f -user bandit7 -group bandit6 -size 33c 2>/dev/null
+> 
+> # Step 4: Display the found password file
+> cat /var/lib/dpkg/info/bandit7.password
 
 > commands
 
