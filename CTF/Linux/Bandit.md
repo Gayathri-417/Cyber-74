@@ -129,6 +129,35 @@ cat /var/lib/dpkg/info/bandit7.password
 morbNTDkSW6jIlUc0ymOdMaLnOlFVAaj
 ```
 ## Level 7-8
+QUESTION
+
+> The password is stored in a file next to a specific keyword.
+> 
+> **How would you:**
+> * Search for that keyword?
+> * Extract adjacent content?
+> * Automate search across directories?
+> 
+> **Solution Approach:**
+> ```
+> # Step 1: Establish SSH connection
+> ssh bandit8@bandit.labs.overthewire.org -p 2220
+> 
+> # Step 2: List files in current directory
+> ls
+> # Identifies data.txt as the target file
+> 
+> # Step 3: Search for the specific keyword
+> # grep → searches text
+> # millionth → word to search
+> # data.txt → file to search in
+> grep millionth data.txt
+> 
+> # Step 4: Extract the password (adjacent content)
+> grep millionth data.txt | cut -d' ' -f2
+> # Or save full line for reference
+> grep millionth data.txt > password.txt
+
 
 > commands
 
