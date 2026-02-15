@@ -68,6 +68,34 @@ cat ...Hiding-From-You
 ```
 
 ## Level 4-5
+QUESTION
+
+> You are given multiple files. Only one is human-readable.
+> 
+> **How would you:**
+> * Identify file types?
+> * Filter non-binary files?
+> * Extract readable content?
+> 
+> **Solution Approach:**
+> ```
+> # Step 1: Establish SSH connection
+> ssh bandit5@bandit.labs.overthewire.org -p 2220
+> 
+> # Step 2: Navigate to the inhere directory
+> cd inhere
+> 
+> # Step 3: Verify current location
+> pwd                # print working directory
+> 
+> # Step 4: List all files (including those with special names)
+> ls                 # list all files
+> 
+> # Step 5: Identify file types for all files in directory
+> file ./*           # list all files and identify their types
+> 
+> # Step 6: Access the human-readable file
+> cat ./-file07      # Read the file with special name starting with dash
 
 > commands
 
