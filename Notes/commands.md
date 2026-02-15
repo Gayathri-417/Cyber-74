@@ -291,6 +291,14 @@ Information:
 ├── Ctrl + T              # Check spelling
 
 
+Complete Nano editing session example:
+ //Step 1: Create/open a file
+
+  nano mynotes.txt
+
+// Step 2: Inside nano, type your content
+  
+
  Step 3: Save and exit
 
 Press Ctrl + O (to save)
