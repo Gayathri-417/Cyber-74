@@ -168,6 +168,33 @@ uniq -u → shows only lines that appear once
 4CKMh1JI91bUIZZPXDqGanal4xvAg0JM
 ```
 ## Level 9-10
+QUESTION 
+
+> You are told the password is hidden inside a file and is the only human-readable string preceded by specific characters.
+> 
+> **How would you:**
+> * Search for readable strings?
+> * Filter based on pattern?
+> * Extract only relevant content?
+> 
+> **Solution Approach:**
+> ```
+> # Step 1: Establish SSH connection
+> ssh bandit10@bandit.labs.overthewire.org -p 2220
+> 
+> # Step 2: Extract human-readable strings from the file
+> strings data.txt
+> # strings data.txt → extracts readable text from binary/mixed files
+> 
+> # Step 3: Filter based on the known pattern (multiple equals signs)
+> strings data.txt | grep "==="
+> # | → sends output forward
+> # grep "===" → filters only lines containing "==="
+> 
+> # Step 4: Extract the password (usually after the === markers)
+> strings data.txt | grep "===" | cut -d' ' -f2-
+> # Further refine to get just the password part
+
 
 > commands
 
@@ -187,6 +214,37 @@ FGUW5ilLVJrxX9kMYMmlN4MgbpfMiqey
 ```
 
 ## Level 10-11
+QUESTION
+
+> A file contains Base64-encoded data.
+> 
+> **How would you:**
+> * Detect encoding type?
+> * Decode it?
+> * Verify data integrity?
+> 
+> **Solution Approach:**
+> ```
+> # Step 1: Establish SSH connection
+> ssh bandit11@bandit.labs.overthewire.org -p 2220
+> 
+> # Step 2: Detect encoding type by examining file content
+> cat data.txt
+> # This confirms it is Base64, not normal text
+> # Base64 typically contains only A-Z, a-z, 0-9, +, /, and = for padding
+> 
+> # Step 3: Decode the Base64 data
+> # base64 → Tool used to encode or decode Base64 data
+> # -d → Means decode
+> # data.txt → File containing encoded data
+> base64 -d data.txt
+> 
+> # Step 4: Save decoded output for verification
+> base64 -d data.txt > decoded.txt
+> 
+> # Step 5: Verify integrity by re-encoding and comparing
+> base64 decoded.txt | diff - data.txt
+> # No output means the decoded data matches original
 
 > commands
 
@@ -210,6 +268,36 @@ dtR173fZKb0RRsDFSGsg2RWnpNVj3qRr
 ```
 
 ## Level 11-12
+QUESTION 
+
+> You are given data that appears encoded using a simple substitution cipher.
+> 
+> **How would you:**
+> * Identify the cipher type?
+> * Decode the message?
+> * Validate the decoded output?
+> 
+> **Solution Approach:**
+> ```
+> # Step 1: Establish SSH connection
+> ssh bandit12@bandit.labs.overthewire.org -p 2220
+> 
+> # Step 2: Examine the encoded data
+> cat data.txt
+> # You'll see something unreadable — that's ROT13 text
+> 
+> # Step 3: Decode using ROT13 translation
+> # cat data.txt → Reads the file content
+> # | → Pipe: sends output of one command to another
+> # tr 'A-Za-z' 'N-ZA-Mn-za-m' → Translates letters using ROT13
+> cat data.txt | tr 'A-Za-z' 'N-ZA-Mn-za-m'
+> 
+> # Step 4: Save decoded output
+> cat data.txt | tr 'A-Za-z' 'N-ZA-Mn-za-m' > decoded.txt
+> 
+> # Step 5: Validate the decoded output
+> cat decoded.txt
+> # Should now show readable password/next level credentials
 
 > commands
 
