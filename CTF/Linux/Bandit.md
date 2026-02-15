@@ -85,6 +85,35 @@ file ./* --- list all files
 ```
 
 ## Level 5-6
+QUESTION
+
+> The password is stored in a hidden file under multiple nested directories with specific properties.
+> 
+> **How would you:**
+> * Identify hidden directories?
+> * Search recursively?
+> * Filter based on file type?
+> 
+> **Solution Approach:**
+> ```
+> # Step 1: Establish SSH connection
+> ssh bandit6@bandit.labs.overthewire.org -p 2220
+> 
+> # Step 2: Navigate to the inhere directory
+> cd inhere
+> 
+> # Step 3: Verify current location
+> pwd
+> 
+> # Step 4: Search recursively for files with specific properties
+> # find . → search from current directory
+> # -type f → files only
+> # -size 1033c → exactly 1033 bytes
+> # ! -executable → NOT executable
+> find . -type f -size 1033c ! -executable
+> 
+> # Step 5: Display the found password file
+> cat ./maybehere07/.file2
 
 > commands
 
