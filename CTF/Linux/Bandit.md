@@ -292,6 +292,30 @@ FO5dwFsc0cbaIiH0h8J2eUks2vdTDwAn
 ```
 
 ## Level 13-14
+QUESTION
+
+> You are given an SSH private key instead of a password.
+> 
+> **How would you:**
+> * Securely use the private key?
+> * Adjust file permissions?
+> * Authenticate using key-based login?
+> 
+> **Solution Approach:**
+> ```
+> # Step 1: Log out of current SSH session (if inside bandit13)
+> exit
+> 
+> # Step 2: Securely use the private key with proper permissions
+> # SSH requires private keys to have strict permissions
+> chmod 600 sshkey.private
+> 
+> # Step 3: Authenticate using key-based login
+> ssh -i sshkey.private bandit14@bandit.labs.overthewire.org -p 2220
+> 
+> # Step 4: Retrieve the password for the next level
+> cat /etc/bandit_pass/bandit14
+
 
 > commands
 
@@ -307,6 +331,35 @@ MU4VWeTyJk8ROof1qqmcBPaLh7lDCPvS
 ```
 
 ## Level 14-15
+QUESTION
+
+> You are told to submit the current level password to a service running on localhost.
+> 
+> **How would you:**
+> * Connect to a local port?
+> * Send structured input?
+> * Capture the server response?
+> 
+> **Solution Approach:**
+> ```
+> # Step 1: Establish SSH connection to target system
+> ssh bandit15@bandit.labs.overthewire.org -p 2220
+> 
+> # Step 2: Connect to local service using netcat
+> # nc → netcat tool (connect to ports)
+> # localhost → your own machine
+> # 30000 → port number
+> nc localhost 30000
+> 
+> # Step 3: Send structured input to the service
+> # The connection will wait for input
+> # Paste the bandit14 password
+> <bandit14_password>
+> 
+> # Step 4: Submit and capture server response
+> # Press Enter to send
+> # Server validates password and returns next level credentials
+
 
 > commands
 
