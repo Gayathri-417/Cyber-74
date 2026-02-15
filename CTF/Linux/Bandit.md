@@ -1616,6 +1616,43 @@ qp30ex3VLz5MDG1n91YowTv4Q8l7CDZL
 ```
 
 ## Level 30-31
+QUESTION
+
+> While analyzing a Git repository, you notice that no credentials exist in commits or branches. However, the project uses version tags.
+> 
+> **How would you:**
+> * Enumerate all available Git tags?
+> * Inspect tagged versions?
+> * Determine if credentials are stored inside metadata?
+> * Extract hidden information from repository references?
+> 
+> **Solution Approach:**
+> ```
+> # Step 1: Establish SSH connection
+> ssh bandit31@bandit.labs.overthewire.org -p 2220
+> 
+> # Step 2: Create temporary directory for cloning
+> mkdir /tmp/bandit30repo
+> cd /tmp/bandit30repo
+> 
+> # Step 3: Clone the repository with SSH on custom port
+> GIT_SSH_COMMAND='ssh -p 2220' git clone ssh://bandit30-git@bandit.labs.overthewire.org/home/bandit30-git/repo
+> 
+> # Step 4: Navigate into the cloned repository
+> cd repo
+> 
+> # Step 5: Examine current files (no credentials visible)
+> ls -la
+> cat README.md
+> 
+> # Step 6: List all Git tags in the repository
+> git tag
+> # Output shows: secret
+> 
+> # Step 7: Inspect the tag content
+> # git show <tag-name> → displays the object referenced by the tag
+> git show secret
+> # This reveals the password stored directly in the tag
 
 > commands
 
@@ -1636,6 +1673,53 @@ fb5S2xb7bRyFmAvQYQGEqsbhVyJqhnDy
 ```
 
 ## Level 31-32
+QUESTION
+
+> You are given a repository where pushing changes to the server triggers a validation mechanism. After modifying a file and attempting to push, you receive a response containing unexpected output.
+> 
+> **How would you:**
+> * Analyze server-side behavior during push?
+> * Understand how Git hooks may execute validation scripts?
+> * Identify hidden instructions inside repository files?
+> * Extract the secret returned during server interaction?
+> > **Solution Approach:**
+> ```
+> # Step 1: Establish SSH connection
+> ssh bandit32@bandit.labs.overthewire.org -p 2220
+> 
+> # Step 2: Create temporary directory for cloning
+> mkdir /tmp/bandit31repo
+> cd /tmp/bandit31repo
+> 
+> # Step 3: Clone the repository with SSH on custom port
+> GIT_SSH_COMMAND='ssh -p 2220' git clone ssh://bandit31-git@bandit.labs.overthewire.org/home/bandit31-git/repo
+> 
+> # Step 4: Navigate into the cloned repository
+> cd repo
+> 
+> # Step 5: Examine repository contents for instructions
+> ls -la
+> cat README.md
+> # README.md contains instructions:
+> # "This time your task is to push a file to the remote repository."
+> # "The file should be named 'key.txt' and contain the text: 'May I come in?'"
+> 
+> # Step 6: Create the required file with exact content
+> echo "May I come in?" > key.txt
+> 
+> # Step 7: Force-add the file (even if in .gitignore)
+> git add -f key.txt
+> 
+> # Step 8: Configure Git user identity for commit
+> git config user.email "bandit31@example.com"
+> git config user.name "Bandit Player"
+> 
+> # Step 9: Commit the file
+> git commit -m "Add key.txt with required content"
+> 
+> # Step 10: Push to remote repository and capture response
+> GIT_SSH_COMMAND='ssh -p 2220' git push origin master
+> # Server response contains the password for next level
 
 > commands
 
