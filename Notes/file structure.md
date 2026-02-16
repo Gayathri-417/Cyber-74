@@ -28,6 +28,12 @@ Everything in Linux starts from root (/).
 
 ls /bin    # See basic commands (ls, cp, mv, cat)
 ls /sbin   # See system commands (fdisk, ifconfig, reboot)
+ View system administration commands
+ls -la /sbin
+ Commands like:
+which fdisk              # Find partition tool
+which ifconfig           # Network config (deprecated)
+which ip                 # Modern network tool
 
 > /boot
 
@@ -211,3 +217,20 @@ cat /proc/meminfo | head -10
  Check processes
 ls /proc/$$              # Current shell process
 cat /proc/$$/status      # Status of current shell
+
+> /root - Root's Home
+
+ /root is the home directory of the root user (superuser) in Linux.
+
+It is different from /.
+
+Root has:
+
+Full permissions
+Can modify any file
+Can install/remove software
+Can manage users
+Can control system settings
+
+ Try to view root's home (needs sudo)
+sudo ls -la /root        # Will ask for password
