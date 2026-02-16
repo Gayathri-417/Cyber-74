@@ -62,6 +62,7 @@ ZjLjTmM6FvvyRnrb2rfNWOZOTa6ip5If
 
 
 ## Level 1-2    
+
 QUESTION
 
 > The password is stored in a file named "-" (hyphen).
