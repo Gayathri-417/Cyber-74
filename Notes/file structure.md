@@ -234,3 +234,59 @@ Can control system settings
 
  Try to view root's home (needs sudo)
 sudo ls -la /root        # Will ask for password
+
+> /tmp - Temporary Files
+
+ Stores temporary data
+ Usually cleared automatically on reboot
+ Writable by all users
+ Used for short-term storage
+
+  Go to temp directory
+cd /tmp
+ Create temp files
+touch test.txt
+echo "Temporary" > test.txt
+cat test.txt
+ Files here may disappear on reboot
+
+ > /usr - User Programs and Data
+
+ /usr contains user-level programs, libraries, and shared resources that are not required for the initial boot process.
+
+ Important subdirectories
+
+/usr/bin
+/usr/sbin
+/usr/lib
+/usr/share
+
+ Explore /usr structure
+cd /usr
+ls
+ Important subdirectories
+ls /usr/bin              # Most user commands
+ls /usr/local            # Locally compiled software
+ls /usr/share            # Shared data
+ls /usr/share/man        # Manual pages
+
+> /var - Variable Data
+
+/var stands for Variable.
+It stores data that changes frequently.
+
+Important subdirectories
+
+/var/log
+/var/cache
+/var/spool
+/var/tmp
+
+ Explore variable data
+cd /var
+ls
+ Important directories
+ls /var/log              # All system logs
+ls /var/log/syslog       # Main system log
+ls /var/log/auth.log     # Authentication logs
+tail -f /var/log/syslog  # Watch logs in real-time (Ctrl+C to stop)
