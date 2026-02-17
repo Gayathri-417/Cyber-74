@@ -4,7 +4,9 @@
 
 > commands
 ssh  bandit0@bandit.labs.overthewire.org -p 2220
+
 ![image](./Bandit/image.png)
+
 > password
 
 ```bash
