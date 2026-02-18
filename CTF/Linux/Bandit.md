@@ -15,6 +15,13 @@ bandit0
 ```
 
 ## Level 0-1
+
+![image](./Bandit/image.png)
+
+
+![image](./Bandit/image1.png)
+
+
 QUESTION
 
 > You are given SSH credentials to a remote Linux server. After logging in, you see a file named readme in the user's home directory.
@@ -28,15 +35,6 @@ QUESTION
 > **Explain your step-by-step approach.**
 > 
 > **Solution Approach:**
-
-![image](./Bandit/image.png)
-
-
-![image](./Bandit/image1.png)
-
-
-
-
 
 
 > ```
