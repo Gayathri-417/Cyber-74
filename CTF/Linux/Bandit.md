@@ -38,6 +38,7 @@ QUESTION
 
 
 
+
 > ```
 > # Step 1: Establish SSH connection to the target server
 > ssh bandit0@bandit.labs.overthewire.org -p 2220
