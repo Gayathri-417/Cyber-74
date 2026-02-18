@@ -21,7 +21,7 @@ bandit0
 
 
 
-![image](./Bandit/image1.png)
+![image1](./Bandit/image1.png)
 
 
 QUESTION
