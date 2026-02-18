@@ -28,6 +28,16 @@ QUESTION
 > **Explain your step-by-step approach.**
 > 
 > **Solution Approach:**
+
+![image](./Bandit/image.png)
+
+
+![image](./Bandit/image1.png)
+
+
+
+
+
 > ```
 > # Step 1: Establish SSH connection to the target server
 > ssh bandit0@bandit.labs.overthewire.org -p 2220
