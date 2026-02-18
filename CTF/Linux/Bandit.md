@@ -21,7 +21,9 @@ bandit0
 
 
 
-![image1](./Bandit/image1.png)
+![image](./Bandit/image1.png)
+
+![alt text](image-1.png)
 
 
 QUESTION
