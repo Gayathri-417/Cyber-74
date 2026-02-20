@@ -625,9 +625,16 @@ QUESTION
 > * Validate the decoded output?
 > 
 > **Solution Approach:**
+
+![image](./Bandit/image12.png)
+
+
+![image](./Bandit/image-12.png)
+
+
 > ```
 > # Step 1: Establish SSH connection
-> ssh bandit12@bandit.labs.overthewire.org -p 2220
+> ssh bandit11@bandit.labs.overthewire.org -p 2220
 > 
 > # Step 2: Examine the encoded data
 > cat data.txt
@@ -677,6 +684,12 @@ QUESTION
 > * Automate extraction if needed?
 > 
 > **Solution Approach:**
+
+![image](./Bandit/image13.png)
+
+
+![image](./Bandit/image-13.png)
+
 > ```
 > # Step 1: Establish SSH connection
 > ssh bandit13@bandit.labs.overthewire.org -p 2220
@@ -803,27 +816,41 @@ QUESTION
 > * Authenticate using key-based login?
 > 
 > **Solution Approach:**
+
+![image](./Bandit/image14.png)
+
+
+![image](./Bandit/image-14.png)
+
+
+![image](./Bandit/image--14.png)
+
+
 > ```
-> # Step 1: Log out of current SSH session (if inside bandit13)
-> exit
+> # Step 1: First, make sure you have the private key file
+ If you don't have it saved locally, you need to copy it from the server
+scp -P 2220 bandit13@bandit.labs.overthewire.org:sshkey.private .
 > 
-> # Step 2: Securely use the private key with proper permissions
-> # SSH requires private keys to have strict permissions
-> chmod 600 sshkey.private
+>  Step 2: # Set correct permissions on the key
+chmod 600 sshkey.private
+
 > 
-> # Step 3: Authenticate using key-based login
-> ssh -i sshkey.private bandit14@bandit.labs.overthewire.org -p 2220
+>  Step 3: Now use the key to connect to bandit14
+ssh -i sshkey.private bandit14@bandit.labs.overthewire.org -p 2220
 > 
-> # Step 4: Retrieve the password for the next level
+>  Step 4: Retrieve the password for the next level
 > cat /etc/bandit_pass/bandit14
 
 
 > commands
 
-ssh  bandit14@bandit.labs.overthewire.org -p 2220
-exit // log out first
+scp -P 2220 bandit13@bandit.labs.overthewire.org:sshkey.private . 
+
+chmod 600 sshkey.private
+
 ssh -i sshkey.private bandit14@bandit.labs.overthewire.org -p 2220
-cat /etc/bandit_pass/bandit14 
+
+cat /etc/bandit_pass/bandit14
 
 > password
 
@@ -842,6 +869,13 @@ QUESTION
 > * Capture the server response?
 > 
 > **Solution Approach:**
+
+![image](./Bandit/image15.png)
+
+
+![image](./Bandit/image-15.png)
+
+
 > ```
 > # Step 1: Establish SSH connection to target system
 > ssh bandit15@bandit.labs.overthewire.org -p 2220
@@ -890,9 +924,18 @@ QUESTION
 > * Send correct authentication data?
 > 
 > **Solution Approach:**
+
+![image](./Bandit/image16.png)
+
+
+![image](./Bandit/image-16.png)
+
+
+![image](./Bandit/image--16.png)
+
 > ```
 > # Step 1: Establish SSH connection to target system
-> ssh bandit16@bandit.labs.overthewire.org -p 2220
+> ssh bandit15@bandit.labs.overthewire.org -p 2220
 > 
 > # Step 2: Establish SSL/TLS connection to the service
 > # openssl → cryptography tool
@@ -940,9 +983,23 @@ QUESTION
 > * Interact securely with the correct port?
 > 
 > **Solution Approach:**
+
+![image](./Bandit/image17.png)
+
+
+![image](./Bandit/image-17.png)
+
+![image](./Bandit/image--17.png)
+
+
+![image](./Bandit/image---17.png)
+
+
+![image](./Bandit/image----17.png)
+
 > ```
 > # Step 1: Establish SSH connection to target system
-> ssh bandit17@bandit.labs.overthewire.org -p 2220
+> ssh bandit16@bandit.labs.overthewire.org -p 2220
 > 
 > # Step 2: Scan for open ports in the specified range
 > nmap -p 31000-32000 localhost
@@ -960,32 +1017,60 @@ QUESTION
 > <bandit16_password>
 > # After connection, enter the password to receive next level credentials
 > 
-> # Step 6: Save the received SSH private key
-> nano key17
-> # Paste the RSA private key received from the SSL service
+> # STEP 6: You will receive an RSA private key. Copy it.
+After getting the key, exit the SSL connection (press Ctrl+C)
 > 
-> # Step 7: Set proper permissions for SSH key
-> chmod 600 key17
-> # SSH requires private keys to have strict permissions
+>  Step 7: Create directory for nano (to avoid the warning)
+mkdir -p ~/.local/share/nano/
 > 
-> # Step 8: Use the key to access next level
-> ssh -i key17 bandit17@bandit.labs.overthewire.org -p 2220
-> # Successfully logs into bandit17 using the private key
+>  Step 8: Create and save the key file using nano
+nano /tmp/bandit17.key
+
+ In nano:
+  Paste the RSA private key (right-click or Ctrl+Shift+V)
+  Press Ctrl+O to save
+  Press Enter to confirm filename
+  Press Ctrl+X to exit
+
+> STEP 9: Set correct permissions on the key
+chmod 600 /tmp/bandit17.key 
+
+> STEP 10: Exit from Bandit16 server
+exit
+
+> STEP 11: From your local machine, copy the key file
+scp -P 2220 bandit16@bandit.labs.overthewire.org:/tmp/bandit17.key .
+> Password: kSkvUpMQ7lBYyCM4GBPvCvT1BfWRy0Dx
+
+> STEP 12: Set permissions on your local machine
+chmod 600 bandit17.key
+
+> STEP 13: Connect to Bandit17 using the key
+ssh -i bandit17.key bandit17@bandit.labs.overthewire.org -p 2220
+> Type 'yes' when asked about host authenticity
+
+> STEP 14: Get the password for the next level
+cat /etc/bandit_pass/bandit17
+
 
 > commands
 
-ssh  bandit17@bandit.labs.overthewire.org -p 2220
+ssh  bandit16@bandit.labs.overthewire.org -p 2220
 nmap -p 31000-32000 localhost
 openssl s_client -connect localhost:PORT
 <bandit16_password>
-nano key17
-chmod 600 key17
-ssh -i key17 bandit17@bandit.labs.overthewire.org -p 2220
+mkdir -p ~/.local/share/nano/
+nano /tmp/bandit17.key
+exit
+scp -P 2220 bandit16@bandit.labs.overthewire.org:/tmp/bandit17.key .
+chmod 600 bandit17.key
+ssh -i bandit17.key bandit17@bandit.labs.overthewire.org -p 2220
+cat /etc/bandit_pass/bandit17
 
 > password
 
 ```bash
-BMIOFKM7CRSLI97voLp3TD80NAq5exxk
+BMIOFKM7CRSLI97voLp3TD80NAq5exxk ,, EReVavePLFHtFlFsjn3hyzMlvSuSAcRD
 ```
 
 ## Level 17-18
