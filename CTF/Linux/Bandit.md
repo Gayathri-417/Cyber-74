@@ -89,6 +89,14 @@ QUESTION
 > * Use relative paths correctly?
 > 
 > **Solution Approach:**
+
+![image](./Bandit/image2.png)
+
+
+![image](./Bandit/image-2.png)
+
+
+
 > ```
 > # Step 1: Establish SSH connection
 > ssh bandit2@bandit.labs.overthewire.org -p 2220
@@ -125,9 +133,17 @@ QUESTION
 > * Avoid shell parsing errors?
 > 
 > **Solution Approach:**
+
+
+![image](./Bandit/image3.png)
+
+
+![image](./Bandit/image-3.png)
+
+
 > ```
 > # Step 1: Establish SSH connection
-> ssh bandit3@bandit.labs.overthewire.org -p 2220
+> ssh bandit2@bandit.labs.overthewire.org -p 2220
 > 
 > # Step 2: List files to see the problematic filename
 > ls
@@ -161,8 +177,15 @@ QUESTION
 > 
 > **Solution Approach:**
 > ```
+
+![image](./Bandit/image4.png)
+
+
+![image](./Bandit/image-4.png)
+
+
 > # Step 1: Establish SSH connection
-> ssh bandit4@bandit.labs.overthewire.org -p 2220
+> ssh bandit3@bandit.labs.overthewire.org -p 2220
 > 
 > # Step 2: List files in current directory
 > ls                # list all files
@@ -204,9 +227,16 @@ QUESTION
 > * Extract readable content?
 > 
 > **Solution Approach:**
+
+
+![image](./Bandit/image5.png)
+
+
+![image](./Bandit/image-5.png)
+
 > ```
 > # Step 1: Establish SSH connection
-> ssh bandit5@bandit.labs.overthewire.org -p 2220
+> ssh bandit4@bandit.labs.overthewire.org -p 2220
 > 
 > # Step 2: Navigate to the inhere directory
 > cd inhere
@@ -249,9 +279,17 @@ QUESTION
 > * Filter based on file type?
 > 
 > **Solution Approach:**
+
+
+![image](./Bandit/image6.png)
+
+
+![image](./Bandit/image-6.png)
+
+
 > ```
 > # Step 1: Establish SSH connection
-> ssh bandit6@bandit.labs.overthewire.org -p 2220
+> ssh bandit5@bandit.labs.overthewire.org -p 2220
 > 
 > # Step 2: Navigate to the inhere directory
 > cd inhere
@@ -297,9 +335,17 @@ QUESTION
 > * Avoid permission errors?
 > 
 > **Solution Approach:**
+
+
+![image](./Bandit/image7.png)
+
+
+![image](./Bandit/image-7.png)
+
+
 > ```
 > # Step 1: Establish SSH connection
-> ssh bandit7@bandit.labs.overthewire.org -p 2220
+> ssh bandit6@bandit.labs.overthewire.org -p 2220
 > 
 > # Step 2: Navigate to root directory for full system search
 > cd /    # root directory
@@ -354,8 +400,15 @@ QUESTION
 > 
 > **Solution Approach:**
 > ```
+
+![image](./Bandit/image8.png)
+
+
+![image](./Bandit/image-8.png)
+
+
 > # Step 1: Establish SSH connection
-> ssh bandit8@bandit.labs.overthewire.org -p 2220
+> ssh bandit7@bandit.labs.overthewire.org -p 2220
 > 
 > # Step 2: List files in current directory
 > ls
@@ -402,9 +455,19 @@ QUESTION
 > * Handle large files?
 > 
 > **Solution Approach:**
+
+![image](./Bandit/image9.png)
+
+
+![image](./Bandit/image-9.png)
+
+
+![image](./Bandit/image--9.png)
+
+
 > ```
 > # Step 1: Establish SSH connection
-> ssh bandit9@bandit.labs.overthewire.org -p 2220
+> ssh bandit8@bandit.labs.overthewire.org -p 2220
 > 
 > # Step 2: Sort the file to group identical lines together
 > sort data.txt
@@ -447,9 +510,17 @@ QUESTION
 > * Extract only relevant content?
 > 
 > **Solution Approach:**
+
+
+![image](./Bandit/image10.png)
+
+
+![image](./Bandit/image-10.png)
+
+
 > ```
 > # Step 1: Establish SSH connection
-> ssh bandit10@bandit.labs.overthewire.org -p 2220
+> ssh bandit9@bandit.labs.overthewire.org -p 2220
 > 
 > # Step 2: Extract human-readable strings from the file
 > strings data.txt
@@ -493,9 +564,16 @@ QUESTION
 > * Verify data integrity?
 > 
 > **Solution Approach:**
+
+![image](./Bandit/image11.png)
+
+
+![image](./Bandit/image-11.png)
+
+
 > ```
 > # Step 1: Establish SSH connection
-> ssh bandit11@bandit.labs.overthewire.org -p 2220
+> ssh bandit10@bandit.labs.overthewire.org -p 2220
 > 
 > # Step 2: Detect encoding type by examining file content
 > cat data.txt
