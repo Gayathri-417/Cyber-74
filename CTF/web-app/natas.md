@@ -13,6 +13,10 @@
 
 ![image](images/image0.png)
 
+![image](images/image-0.png)
+
+![image](images/image--0.png)
+
 
 1. Open browser and navigate to the URL above
 2. Enter credentials when prompted:
@@ -40,7 +44,38 @@ The page displays: *"You can find the password for the next level on this page."
    - The response appears in the right panel   
 
 
-
-
 # Level 0 - 1
 
+> Level Information
+- **URL**: `http://natas1.natas.labs.overthewire.org`
+- **Username**: `natas1`
+- **Password**: 0nzCigAq7t2iALyvU9xcHlYN4MlkIwlq
+
+> Solution Steps
+
+Method  - Using Burp Suite (Your Workflow)
+
+Step 1: Capture Request in Proxy**
+![Burp Proxy - Intercepting the request]
+*Configure Burp with intercept ON and capture the login request*
+
+**Step 2: Send to Repeater**
+![Right-click menu - Send to Repeater]
+*Right-click on the intercepted request and select "Send to Repeater"*
+
+**Step 3: Request in Repeater**
+![Repeater tab - Request ready]
+*Request successfully transferred to Repeater tab*
+
+**Step 4: Send and View Response**
+![Repeater response - Password found]
+*Click "Send" and find the password in the HTML comment*
+
+![image](images/image1.png)
+
+# Level 1 - 2
+
+> Level Information
+- **URL**: `http://natas2.natas.labs.overthewire.org`
+Username: natas2
+Password: TguMNxKo1DSa1tujBLuZJnDUlCcUAPlI
