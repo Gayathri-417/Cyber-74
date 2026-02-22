@@ -1,6 +1,6 @@
 # OverTheWire: Natas Walkthrough Notes
 
-> Level 0 
+# Level 0 
 
 > Level Information
 - **URL**: `http://natas0.natas.labs.overthewire.org`
@@ -10,6 +10,10 @@
 
 
 > Solution Steps
+
+![image](images/image0.png)
+
+
 1. Open browser and navigate to the URL above
 2. Enter credentials when prompted:
    - Username: natas0
@@ -34,3 +38,9 @@ The page displays: *"You can find the password for the next level on this page."
 
 5. In Repeater, click the **"Send"** button
    - The response appears in the right panel   
+
+
+
+
+# Level 0 - 1
+
