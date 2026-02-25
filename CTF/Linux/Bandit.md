@@ -7,7 +7,6 @@ ssh  bandit0@bandit.labs.overthewire.org -p 2220
 
 ![image](./Bandit/image.png)
 
-
 > password
 
 ```bash
@@ -19,11 +18,7 @@ bandit0
 ![image](./Bandit/image.png)
 
 
-
-
 ![image](./Bandit/image-1.png)
-
-
 
 
 QUESTION
@@ -184,21 +179,21 @@ QUESTION
 ![image](./Bandit/image-4.png)
 
 
-> # Step 1: Establish SSH connection
+>  Step 1: Establish SSH connection
 > ssh bandit3@bandit.labs.overthewire.org -p 2220
 > 
-> # Step 2: List files in current directory
+>  Step 2: List files in current directory
 > ls                # list all files
 > 
-> # Step 3: Try to view inhere (but it's a directory)
+>  Step 3: Try to view inhere (but it's a directory)
 > cat inhere        # error: cat: inhere: Is a directory> 
-> # Step 4: Change into the inhere directory
+>  Step 4: Change into the inhere directory
 > cd inhere         # cd: inhere: Is a directory (but actually works)
 > 
-> # Step 5: List all files, including hidden ones
+>  Step 5: List all files, including hidden ones
 > ls -a             # list all files, including those starting with dot (.)
 > 
-> # Step 6: View the hidden file content
+>  Step 6: View the hidden file content
 > cat ...Hiding-From-You
 
 > commands
@@ -407,22 +402,22 @@ QUESTION
 ![image](./Bandit/image-8.png)
 
 
-> # Step 1: Establish SSH connection
+>  Step 1: Establish SSH connection
 > ssh bandit7@bandit.labs.overthewire.org -p 2220
 > 
-> # Step 2: List files in current directory
+>  Step 2: List files in current directory
 > ls
-> # Identifies data.txt as the target file
+>  Identifies data.txt as the target file
 > 
-> # Step 3: Search for the specific keyword
-> # grep → searches text
-> # millionth → word to search
-> # data.txt → file to search in
+>  Step 3: Search for the specific keyword
+>  grep → searches text
+>  millionth → word to search
+>  data.txt → file to search in
 > grep millionth data.txt
 > 
-> # Step 4: Extract the password (adjacent content)
+>  Step 4: Extract the password (adjacent content)
 > grep millionth data.txt | cut -d' ' -f2
-> # Or save full line for reference
+>  Or save full line for reference
 > grep millionth data.txt > password.txt
 
 
@@ -1083,32 +1078,38 @@ QUESTION
 > * Automate comparison if files are large?
 > 
 > **Solution Approach:**
+
+![image](./Bandit/image18.png)
+
+
+![image](./Bandit/image-18.png)
+
+
 > ```
 > # Step 1: Establish SSH connection to target system
-> ssh bandit18@bandit.labs.overthewire.org -p 2220
-> 
-> # Step 2: List files in current directory
+> ssh bandit17@bandit.labs.overthewire.org -p 2220
+>  Step 2: List files in current directory
 > ls
-> # Identifies the two files: passwords.old and passwords.new
+>  Identifies the two files: passwords.old and passwords.new
 > 
-> # Step 3: Compare files using diff command
+>  Step 3: Compare files using diff command
 > diff passwords.old passwords.new
-> # Shows lines that differ between the two files
-> # Output format: < indicates lines in first file, > indicates lines in second file
+>  Shows lines that differ between the two files
+>  Output format: < indicates lines in first file, > indicates lines in second file
 > 
-> # Step 4: Alternative comparison methods
-> # View only unique lines from second file
+>  Step 4: Alternative comparison methods
+>  View only unique lines from second file
 > comm -23 <(sort passwords.new) <(sort passwords.old)
 > 
-> # Use grep to find lines in new file not in old file
+>  Use grep to find lines in new file not in old file
 > grep -v -f passwords.old passwords.new
 > 
-> # For binary files or checksum comparison
+>  For binary files or checksum comparison
 > md5sum passwords.old passwords.new
 > sha256sum passwords.old passwords.new
 > 
-> # Step 5: Extract the differing content (the new password)
-> # The line marked with '>' in diff output is the password
+>  Step 5: Extract the differing content (the new password)
+>  The line marked with '>' in diff output is the password
 > diff passwords.old passwords.new | grep '>' | cut -d ' ' -f2-
 > ```
 
@@ -1118,8 +1119,6 @@ QUESTION
 ssh  bandit18@bandit.labs.overthewire.org -p 2220
 ls
 diff passwords.old passwords.new
-
-
 
 > password
 
@@ -1137,6 +1136,13 @@ QUESTION
 > * Bypass the forced logout mechanism?
 > 
 > **Solution Approach:**
+
+![image](./Bandit/image19.png)
+
+
+![image](./Bandit/image-19.png)
+
+
 > ```
 > # Step 1: Attempt SSH connection with command execution to bypass shell
 > # Instead of getting an interactive shell, directly execute a command
@@ -1178,9 +1184,15 @@ QUESTION
 > * Abuse it to retrieve restricted data?
 > 
 > **Solution Approach:**
+
+![image](./Bandit/image20.png)
+
+
+![image](./Bandit/image-20.png)
+
 > ```
 > # Step 1: Establish SSH connection to target system
-> ssh bandit20@bandit.labs.overthewire.org -p 2220
+> ssh bandit19@bandit.labs.overthewire.org -p 2220
 > 
 > # Step 2: Examine file permissions to identify elevated privileges
 > ls -l
@@ -1226,9 +1238,17 @@ QUESTION
 > * Automate communication if needed?
 > 
 > **Solution Approach:**
+
+![image](./Bandit/image21.png)
+
+
+![image](./Bandit/image-21.png)
+
+![image](./Bandit/image--21.png)
+
 > ```
 > # Step 1: Establish SSH connection to target system
-> ssh bandit21@bandit.labs.overthewire.org -p 2220
+> ssh bandit20@bandit.labs.overthewire.org -p 2220
 > 
 > # Step 2: Identify listening services/netcat connections
 > # Check for running processes or open ports
@@ -1245,6 +1265,13 @@ QUESTION
 > # This connects to port 1234 and retrieves the password from the listener
 > # The service validates the password and returns the next level credentials
 > ```
+-------------------------
+
+First, start the netcat listener in the foreground:
+
+Open a second terminal window and connect to bandit20 again, then run:
+
+./suconnect 1234
 
 > commands
 
@@ -1269,9 +1296,15 @@ QUESTION
 > * Determine if it exposes sensitive information?
 > 
 > **Solution Approach:**
+
+![image](./Bandit/image22.png)
+
+
+![image](./Bandit/image-22.png)
+
 > ```
 > # Step 1: Establish SSH connection to target system
-> ssh bandit22@bandit.labs.overthewire.org -p 2220
+> ssh bandit21@bandit.labs.overthewire.org -p 2220
 > 
 > # Step 2: Identify cron jobs by examining cron directories
 > ls /etc/cron.d/
@@ -1329,9 +1362,15 @@ QUESTION
 > * Explain your step-by-step approach
 > 
 > **Solution Approach:**
+
+![image](./Bandit/image23.png)
+
+
+![image](./Bandit/image-23.png)
+
 > ```
 > # Step 1: Establish SSH connection to target system
-> ssh bandit23@bandit.labs.overthewire.org -p 2220
+> ssh bandit22@bandit.labs.overthewire.org -p 2220
 > 
 > # Step 2: Locate and list cron jobs
 > ls /etc/cron.d/
@@ -1367,6 +1406,7 @@ cat /tmp/8ca319486bfbbc3663ea0fbe81326349
 
 ```bash
 0Zf11ioIjMVN551jX3CmStKLYqjk54Ga
+
 ```
 
 ## Level 23-24
@@ -1389,9 +1429,17 @@ QUESTION
 > * Explain your step-by-step approach
 > 
 > **Solution Approach:**
+
+![image](./Bandit/image24.png)
+
+
+![image](./Bandit/image-24.png)
+
+![image](./Bandit/image--24.png)
+
 > ```
 > # Step 1: Establish SSH connection to target system
-> ssh bandit24@bandit.labs.overthewire.org -p 2220
+> ssh bandit23@bandit.labs.overthewire.org -p 2220
 > 
 > # Step 2: Locate and analyze cron jobs
 > cd /etc/cron.d/
@@ -1433,11 +1481,12 @@ ls -l
 cat cronjob_bandit24
 cat /usr/bin/cronjob_bandit24.sh
 cd /var/spool/bandit24/foo/
-echo '#!/bin/bash
-cat /etc/bandit_pass/bandit24 > /tmp/bandit23_pw.txt' > myscript.sh
+cat > myscript.sh << 'EOF'
+#!/bin/bash
+ cat /etc/bandit_pass/bandit24 > /tmp/bandit24_password.txt
+ EOF
 chmod +x myscript.sh
-cat /tmp/bandit23_pw.txt
-
+cat /tmp/bandit24_password.txt
 > password
 
 ```bash
@@ -1464,9 +1513,18 @@ QUESTION
 > * What security weakness this represents
 > 
 > **Solution Approach:**
+
+![image](./Bandit/image25.png)
+
+
+![image](./Bandit/image-25.png)
+
+![image](./Bandit/image--25.png)
+
+
 > ```
 > # Step 1: Establish SSH connection to the target system
-> ssh bandit25@bandit.labs.overthewire.org -p 2220
+> ssh bandit24@bandit.labs.overthewire.org -p 2220
 > 
 > # Step 2: Analyze the service by testing manual connection
 > # First, identify the service port (assumed to be 30002 based on context)
@@ -1517,9 +1575,18 @@ QUESTION
 > * What security misconfiguration this represents
 > 
 > **Solution Approach:**
+
+![image](./Bandit/image26.png)
+
+
+![image](./Bandit/image-26.png)
+
+![image](./Bandit/image--26.png)
+
+![image](./Bandit/image-!26.png)
 > ```
 > # Step 1: Establish SSH connection to the target
-> ssh bandit26@bandit.labs.overthewire.org -p 2220
+> ssh bandit25@bandit.labs.overthewire.org -p 2220
 > 
 > # Step 2: Identify the shell being used for bandit26 user
 > cat /etc/passwd | grep bandit26
@@ -1545,6 +1612,11 @@ QUESTION
 ssh  bandit26@bandit.labs.overthewire.org -p 2220
 cat /etc/passwd | grep bandit26
 cat /usr/bin/showtext
+On your LOCAL machine (new terminal):
+scp -P 2220 bandit25@bandit.labs.overthewire.org:~/bandit26.sshkey ~/bandit26.sshkey
+chmod 600 ~/bandit26.sshkey
+Make terminal VERY small (3-4 lines), then:
+ssh -i ~/bandit26.sshkey bandit26@bandit.labs.overthewire.org -p 2220
 :set shell=/bin/bash
 :shell
 cat /etc/bandit_pass/bandit26
@@ -1568,9 +1640,16 @@ QUESTION
 > **Explain how you would approach this step-by-step.**
 > 
 > **Solution Approach:**
+
+![image](./Bandit/image27.png)
+
+
+![image](./Bandit/image-27.png)
+
+
 > ```
 > # Step 1: Connect to the target server
-> ssh bandit27@bandit.labs.overthewire.org -p 2220
+> ssh bandit26 @bandit.labs.overthewire.org -p 2220
 > 
 > # Step 2: Enumerate available files in current directory
 > ls
@@ -1625,9 +1704,18 @@ QUESTION
 > **Challenge:** You are given SSH access credentials to a Git server running on a non-standard port (2220), where a repository is hosted remotely, requiring you to: (1) clone the repository securely from your local machine, (2) analyze it, and (3) find hidden credentials inside — explain step-by-step how you would approach this.
 > 
 > **Solution Approach:**
+
+![image](./Bandit/image28.png)
+
+
+![image](./Bandit/image-28.png)
+
+![image](./Bandit/image--28.png)
+
+
 > ```
 > # Step 1: Establish SSH connection to the server
-> ssh bandit28@bandit.labs.overthewire.org -p 2220
+> ssh bandit27@bandit.labs.overthewire.org -p 2220
 > 
 > # Step 2: Create temporary directory for cloning
 > mkdir /tmp/bandit27repo
@@ -1674,6 +1762,14 @@ QUESTION
 > * Explain the security risk of exposed Git history?
 > 
 > **Solution Approach:**
+
+![image](./Bandit/image29.png)
+
+
+![image](./Bandit/image-29.png)
+
+
+
 > ```
 > # Step 1: Establish SSH connection
 > ssh bandit29@bandit.labs.overthewire.org -p 2220
@@ -1741,9 +1837,17 @@ QUESTION
 > * Identify credentials stored in alternative development branches?
 > 
 > **Solution Approach:**
+
+![image](./Bandit/image30.png)
+
+
+![image](./Bandit/image-30.png)
+
+![image](./Bandit/image--30.png)
+
 > ```
 > # Step 1: Establish SSH connection
-> ssh bandit30@bandit.labs.overthewire.org -p 2220
+> ssh bandit29@bandit.labs.overthewire.org -p 2220
 > 
 > # Step 2: Create temporary directory for cloning
 > mkdir /tmp/bandit29repo
@@ -1808,9 +1912,15 @@ QUESTION
 > * Extract hidden information from repository references?
 > 
 > **Solution Approach:**
+
+![image](./Bandit/image31.png)
+
+
+![image](./Bandit/image-31.png)
+
 > ```
 > # Step 1: Establish SSH connection
-> ssh bandit31@bandit.labs.overthewire.org -p 2220
+> ssh bandit30@bandit.labs.overthewire.org -p 2220
 > 
 > # Step 2: Create temporary directory for cloning
 > mkdir /tmp/bandit30repo
@@ -1864,9 +1974,16 @@ QUESTION
 > * Identify hidden instructions inside repository files?
 > * Extract the secret returned during server interaction?
 > > **Solution Approach:**
+
+![image](./Bandit/image32.png)
+
+![image](./Bandit/image-32.png)
+
+![image](./Bandit/image--32.png)
+
 > ```
 > # Step 1: Establish SSH connection
-> ssh bandit32@bandit.labs.overthewire.org -p 2220
+> ssh bandit31@bandit.labs.overthewire.org -p 2220
 > 
 > # Step 2: Create temporary directory for cloning
 > mkdir /tmp/bandit31repo
@@ -1938,9 +2055,13 @@ QUESTION
 > * Gain access to a functional shell environment?
 > 
 > **Solution Approach:**
+
+![image](./Bandit/image33.png)
+
+![image](./Bandit/image-33.png)
 > ```
 > # Step 1: Establish SSH connection
-> ssh bandit33@bandit.labs.overthewire.org -p 2220
+> ssh bandit32@bandit.labs.overthewire.org -p 2220
 > 
 > # Step 2: Observe the restricted shell behavior
 > # WELCOME TO THE UPPERCASE SHELL
