@@ -101,13 +101,15 @@
 
    ![image](images/image-m2.png)
 
-# Level 3
+
 
 > HTML Injection POST HIGH
 
    There is no way to bypass this at the time of writing
 
    All html special characters are properly sanitized at high level using the htmlspecialchars() function
+
+# Level 3   
 
 > HTML Injection URL LOW
 
