@@ -325,6 +325,8 @@
 
     -on the result page , we can see the user details
 
+   ![image](images/image--12.png)  
+
 # Level 13
 
 > SQL Injection (search / captcha)
